@@ -1,0 +1,7 @@
+Clown.create name: "Bozo", hair: "red", gimmick: "Big Shoes"
+Clown.create name: "Ronald McDonald", hair: "red", gimmick: "Golden Arches"
+Clown.create name: "Krusty", hair: "teal", gimmick: "Jewish Alcoholic"
+Clown.create name: "Pennywise", hair: "red", gimmick: "Eats souls"
+Clown.create name: "ICP", hair: "Varied", gimmick: "Juggalos"
+Clown.create name: "Yorick", hair: "gone", gimmick: "Hamlet remembered him"
+Clown.create name: "Harley Quinn", hair: "blonde", gimmick: "Can write prescriptions"
