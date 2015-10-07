@@ -20,6 +20,7 @@ _ActiveRecord_ is a Ruby gem that implements the _active record_ pattern, provid
         + `update`
     - DELETE
         + `destroy`
+    - Quick note on bangs - `save` vs. `save!`
 * Method Chaining
 * `first`/`last`
 * Brief intro to Validations
