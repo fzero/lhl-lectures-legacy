@@ -9,13 +9,17 @@ First a quick review:
 * Validations
     - `validates`
 
+
 ### More validations
+
 * Custom validations
     - `validate`
 * Validation error messages
     - Adding errors
 
+
 ### Callbacks
+
 * What they are and how do they work
     - Adding behaviour
     - Preventing behaviour
@@ -53,10 +57,14 @@ First a quick review:
         + `after_destroy`
         + `after_commit` / `after_rollback`
 
+
 ### Migrations
+
 * Rake tasks
 * The `db/migrate` folder
 * Migration classes
 
+
 ### Environments
+
 * How to differentiate between development and test databases
