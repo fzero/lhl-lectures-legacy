@@ -11,9 +11,9 @@ ActiveRecord::Base.establish_connection(
   adapter: 'postgresql',
   encoding: 'unicode',
   pool: 5,
-  database: 'w3d3',
-  username: 'fzero',
-  password: '',
+  database: 'w3d3',  # Change this to your database name,
+  username: 'fzero', # user name
+  password: '',      # and password (if any)
   host: 'localhost',
   port: 5432,
   min_messages: 'error'
