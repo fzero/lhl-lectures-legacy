@@ -1,6 +1,12 @@
 # More ActiveRecord
 
-First a quick review:
+I'll start again by saying the ActiveRecord documentation is extensive and very well written. Here are the links to the subjects we're discussing today:
+
+* Associations: http://guides.rubyonrails.org/association_basics.html
+* Validations: http://guides.rubyonrails.org/active_record_validations.html
+* Callbacks: http://guides.rubyonrails.org/active_record_callbacks.html
+
+Quick AR review:
 
 * Basic CRUD
 * Associations
