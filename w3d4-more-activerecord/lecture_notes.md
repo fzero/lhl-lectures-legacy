@@ -37,9 +37,11 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
         + e.g. Sending emails, processing images etc.
     - Preventing behaviour
         + e.g. Don't delete a record if condition
+            * To prevent a behaviour, make sure your `before` method returns `false` or raises an exception.
     - Conditional callbacks
         + `:if`, `:unless`
 * When do they run (and when they don't)
+    - Full reference: http://guides.rubyonrails.org/active_record_callbacks.html#skipping-callbacks
     - `destroy` vs. `delete`
     - `update_column(s)` vs `update` / `save`
     - Running SQL queries directly
@@ -76,11 +78,30 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
 ### Migrations
 
 * Rake tasks
+    - Defined in `Rakefile`
+    - You can see all available tasks with `rake -T`
 * The `db/migrate` folder
+    - Contains all migrations, ordered by version number or timestamp
+    - File names **must** follow the `version_migration_class_name.rb` format
+    - Migration classes **must** match file names
+        + `class AddCustomersTable` => `01_add_customers_table.rb`
 * Migration classes
-    - Adding a new table for a new model. Let's add post comments!
+    - Always inherit from `ActiveRecord::Migration`
+    - Must have a `change` method where all changes are made
+    - See the `db/migrate` in the lecture code
+* Running migrations
+    - `rake db:migrate`
+    - `rake db:rollback`
 
 
 ### Environments
 
 * How to differentiate between development and test databases
+    - First of all: have different databases
+        + `project_development`, `project_test`, `project_production`...
+    - How to use different ones?
+        + Environment variables
+            * Defined on the terminal with `variable=value`
+            * Readable from Ruby inside the `ENV` global
+            * `APP_ENV=development ruby myscript.rb` => `ENV['APP_ENV']`
+        + Look inside `setup.rb` to see how `DB_NAME` is defined.
