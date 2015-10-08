@@ -1,3 +1,6 @@
+PREP TODO:
+- make structure like "students and teachers"
+
 # More ActiveRecord
 
 First a quick review:
@@ -6,24 +9,32 @@ First a quick review:
 * Associations
     - `has_many`
     - `belongs_to`
+    - `dependent: destroy`
 * Validations
     - `validates`
+    - Checking for errors
+        + `valid?`
+        + `errors[]`
 
 
 ### More validations
 
 * Custom validations
-    - `validate`
+    - `validate` with method
 * Validation error messages
     - Adding errors
+        + `errors.add(:field_key, "message")`
 
 
 ### Callbacks
 
 * What they are and how do they work
     - Adding behaviour
+        + e.g. Sending emails, processing images etc.
     - Preventing behaviour
+        + e.g. Don't delete a record if condition
     - Conditional callbacks
+        + `:if`, `:unless`
 * When do they run (and when they don't)
     - `destroy` vs. `delete`
     - `update_column(s)` vs `update` / `save`
@@ -63,6 +74,7 @@ First a quick review:
 * Rake tasks
 * The `db/migrate` folder
 * Migration classes
+    - Adding a new table for a new model. Let's add post comments!
 
 
 ### Environments

@@ -1,0 +1,79 @@
+require './setup'
+require 'active_record/schema_dumper'
+
+def get_raw_db_connection
+  ActiveRecord::Base.establish_connection(
+    adapter: 'postgresql',
+    encoding: 'unicode',
+    username: 'fzero',
+    password: '',
+    host: 'localhost',
+    port: 5432,
+    min_messages: 'error'
+  )
+end
+
+desc 'create the database'
+task 'db:create' do
+  get_raw_db_connection
+  ActiveRecord::Base.connection.create_database DB_NAME
+end
+
+desc 'drop the database'
+task 'db:drop' do
+  get_raw_db_connection
+  ActiveRecord::Base.connection.drop_database DB_NAME
+  schema_filename = File.absolute_path('db/schema.rb', File.dirname(__FILE__))
+  File.delete(schema_filename)
+end
+
+desc 'dump the database'
+task 'db:schema:dump' do
+  schema_filename = File.absolute_path('db/schema.rb', File.dirname(__FILE__))
+  File.open(schema_filename, 'w:utf-8') do |file|
+    ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+  end
+end
+
+desc 'migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog).'
+task 'db:migrate' do
+  ActiveRecord::Migration.verbose = ENV['VERBOSE'] ? ENV['VERBOSE'] == 'true' : true
+  ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths, ENV['VERSION'] ? ENV['VERSION'].to_i : nil) do |migration|
+    ENV['SCOPE'].blank? || (ENV['SCOPE'] == migration.scope)
+  end
+  Rake::Task['db:schema:dump'].invoke
+end
+
+desc 'rollback the database (options: VERSION=x, VERBOSE=false, STEPS=1).'
+task 'db:rollback' do
+  ActiveRecord::Migration.verbose = ENV['VERBOSE'] ? ENV['VERBOSE'] == 'true' : true
+  ActiveRecord::Migrator.rollback(ActiveRecord::Migrator.migrations_paths, ENV['STEPS'] ? ENV['STEPS'].to_i : 1)
+  Rake::Task['db:schema:dump'].invoke
+end
+
+desc 'populate the test database with data'
+task 'db:populate' do
+  require 'faker'
+  10.times do
+    User.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      admin: (rand(2) > 0)
+    )
+  end
+
+  users = User.all.to_a
+  100.times do
+    Post.create!(
+      title: Faker::Book.title,
+      body: Faker::Lorem.paragraph,
+      published: (rand(2) > 0),
+      user_id: users.sample.id
+    )
+  end
+end
+
+desc 'Retrieves the current schema version number'
+task 'db:version' do
+  puts "Current version: #{ActiveRecord::Migrator.current_version}"
+end
