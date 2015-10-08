@@ -1,6 +1,3 @@
-PREP TODO:
-- make structure like "students and teachers"
-
 # More ActiveRecord
 
 First a quick review:
