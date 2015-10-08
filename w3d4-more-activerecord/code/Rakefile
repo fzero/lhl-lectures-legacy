@@ -62,15 +62,25 @@ task 'db:populate' do
     )
   end
 
-  users = User.all.to_a
+  users = User.all.pluck(:id)
   100.times do
     Post.create!(
       title: Faker::Book.title,
       body: Faker::Lorem.paragraph,
       published: (rand(2) > 0),
-      user_id: users.sample.id
+      user_id: users.sample
     )
   end
+
+  posts = Post.all.pluck(:id)
+  100.times do
+    Comment.create!(
+      body: Faker::Lorem.paragraph,
+      published: (rand(2) > 0),
+      post_id: posts.sample
+    )
+  end
+
 end
 
 desc 'Retrieves the current schema version number'

@@ -49,20 +49,20 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
     - `create` callbacks
         + `before_validation`
         + `after_validation`
-        + `before_save`
-        + `around_save`
         + `before_create`
+        + `before_save`
         + `around_create`
+        + `around_save`
         + `after_create`
         + `after_save`
         + `after_commit` / `after_rollback`
     - `update` callbacks
         + `before_validation`
         + `after_validation`
-        + `before_save`
-        + `around_save`
         + `before_update`
+        + `before_save`
         + `around_update`
+        + `around_save`
         + `after_update`
         + `after_save`
         + `after_commit` / `after_rollback`

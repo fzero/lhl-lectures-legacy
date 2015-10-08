@@ -2,6 +2,7 @@ require 'pry' # incase you want to use binding.pry
 require 'active_record'
 require_relative 'lib/user'
 require_relative 'lib/post'
+require_relative 'lib/comment'
 
 # Config variables
 APP_ENV = ENV['APP_ENV'] || 'development'
@@ -21,4 +22,5 @@ ActiveRecord::Base.establish_connection(
   port: 5432,
   min_messages: 'error'
 )
+ActiveRecord::Base.connection
 puts "CONNECTED"
