@@ -6,7 +6,8 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
 * Validations: http://guides.rubyonrails.org/active_record_validations.html
 * Callbacks: http://guides.rubyonrails.org/active_record_callbacks.html
 
-Quick AR review:
+
+### Quick AR review
 
 * Basic CRUD
 * Associations
