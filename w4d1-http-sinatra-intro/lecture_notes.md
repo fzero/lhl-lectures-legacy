@@ -42,18 +42,19 @@
 ## HTTP Requests
 
 ### Request method
-* `GET`
-* `POST`
-* `PUT/PATCH`
-* `DELETE`
+* `GET` - READ data from the server
+* `POST` - SEND data and CREATE an object on the server
+* `PUT/PATCH` - SEND data and UPDATE an object on the server
+* `DELETE` - DELETE data on the server
 
 Note how they map nicely to CRUD operations
 
 ### URI - Uniform Resource Indicator
 * Also known as **URL - Uniform Recource Locator**
-* Has several parts. In `http://www.example.com/hello?name=fabio&lname=neves#greeting`
+* Has several parts. In `http://www.example.com:8080/hello?name=fabio&lname=neves#greeting`
     - Protocol: `http://`
     - Host: `www.example.com`
+    - Port: `:8080`
     - Path: `/hello`
     - Query parameters: `?fname=fabio&lname=neves`
     - Hash (or anchor): `#greeting`
@@ -103,7 +104,8 @@ Data to be sent to the server (optional)
 
 * Chrome developer tools is your best friend!
 * Making complex requests
-    - `curl`
+    - `curl` - make requests from the terminal
+        + Documentation for `curl` in FAQ format: http://curl.haxx.se/docs/faq.html
     - DHC Chrome App: https://goo.gl/aa2jaU
     - Postman: http://getpostman.com
 * Checking responses
