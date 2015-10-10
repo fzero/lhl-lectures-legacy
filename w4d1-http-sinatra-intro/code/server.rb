@@ -15,7 +15,7 @@ get '/' do
   name = params[:name] || 'stranger'
 
   # The last thing returned by the method will be displayed in the browser.
-  "Good #{params[:time_of_day]} #{params[:name]}!"
+  "<h1>Good #{time_of_day} #{name}!</h1>"
 end
 
 
@@ -34,5 +34,5 @@ end
 
 post '/login' do
   # POSTed form fields will also show up inside params[]
-  "You logged in with username #{params[:username]} and password #{params[:password]}."
+  "<h1>You logged in with username #{params[:username]} and password #{params[:password]}.</h1>"
 end
