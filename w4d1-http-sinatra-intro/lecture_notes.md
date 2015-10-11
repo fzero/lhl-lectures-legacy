@@ -105,7 +105,8 @@ Data to be sent to the server (optional)
 * Chrome developer tools is your best friend!
 * Making complex requests
     - `curl` - make requests from the terminal
-        + Documentation for `curl` in FAQ format: http://curl.haxx.se/docs/faq.html
+        + Tutorial: http://curl.haxx.se/docs/httpscripting.html
+        + Documentation in FAQ format: http://curl.haxx.se/docs/faq.html
     - DHC Chrome App: https://goo.gl/aa2jaU
     - Postman: http://getpostman.com
 * Checking responses
