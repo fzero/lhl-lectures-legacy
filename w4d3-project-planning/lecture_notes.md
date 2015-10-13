@@ -41,7 +41,12 @@ But in short:
 
 * Take your list of features and make user stories
     + Figure out the data you'll work with
-    + Create workflows on how the users will provide that data an interact with it
+        - Models!
+        - Database tables!
+        - Relationships!
+    + Create workflows on how the users will provide that data and interact with it
+        - Wireframes!
+        - Storyboards!
     + It's always better to think from the perspective of the user, not what's easier to implement
 
 ## How to work as a team 
