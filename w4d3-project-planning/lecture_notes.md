@@ -47,7 +47,11 @@ But in short:
     + Create workflows on how the users will provide that data and interact with it
         - Wireframes!
         - Storyboards!
+        - Tools: 
+            + https://wireframe.cc 
+            + https://moqups.com/
     + It's always better to think from the perspective of the user, not what's easier to implement
+    + How to write user stories: https://medium.com/@jonatisokon/a-framework-for-user-stories-bc3dc323eca9
 
 ## How to work as a team 
 
@@ -57,7 +61,7 @@ But in short:
     - Set due dates
     - Set development targets
     - MEET THEM
-    - USE TRELLO
+    - USE TRELLO: http://trello.com
 
 * **SMART Goals**
     - Specific
@@ -71,6 +75,8 @@ But in short:
 * Use git!
     - `master` should always be _sane_
     - Use feature branching
+        + A very good tutorial: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
+        + Git cheatsheet: http://www.ndpsoftware.com/git-cheatsheet.html
     - Use database migrations and seeds
 * Write tests if you can
     - `rspec` is your friend
