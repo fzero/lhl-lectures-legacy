@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% cache('all_users') do %>
+    <% cache(@users) do %>
       <% @users.each do |user| %>
         <tr>
           <td><%= user.name %></td>
