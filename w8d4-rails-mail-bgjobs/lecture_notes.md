@@ -81,6 +81,42 @@ Installing redis on Vagrant (and Debian Linux):
 $ sudo apt-get install redis-server
 ```
 
+#### VERY IMPORTANT: Queues are processed separately!
+
+Running `bin/rails c` or `bin/rails s` **WILL NOT** start the queue workers! They need be started separately (that's the whole point after all - running things separately from the main app). The way to do this changes depending on the backend.
+
+For Sideqik, run `bin/bundle exec sidekiq`
+
+(Yes, that's what went wrong during the lecture.)
+
+You will see something like this:
+
+```
+$ bin/bundle exec sidekiq
+2015-10-15T15:14:25.786Z 5531 TID-ovac5j7js INFO: Booting Sidekiq 3.5.1 with redis options {:url=>"redis://localhost:6379"}
+
+
+         m,
+         `$b
+    .ss,  $$:         .,d$
+    `$$P,d$P'    .,md$P"'
+     ,$$$$$bmmd$$$P^'
+   .d$$$$$$$$$$P'
+   $$^' `"^$$$'       ____  _     _      _    _
+   $:     ,$$:       / ___|(_) __| | ___| | _(_) __ _
+   `b     :$$        \___ \| |/ _` |/ _ \ |/ / |/ _` |
+          $$:         ___) | | (_| |  __/   <| | (_| |
+          $$         |____/|_|\__,_|\___|_|\_\_|\__, |
+        .d$$                                       |_|
+
+2015-10-15T15:14:26.257Z 5531 TID-ovac5j7js INFO: Running in ruby 2.2.3p173 (2015-08-18 revision 51636) [x86_64-darwin14]
+2015-10-15T15:14:26.257Z 5531 TID-ovac5j7js INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2015-10-15T15:14:26.257Z 5531 TID-ovac5j7js INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
+2015-10-15T15:14:26.257Z 5531 TID-ovac5j7js INFO: Starting processing, hit Ctrl-C to stop
+```
+
+Queues will log things independently from the main app, so bear this in mind when looking for errors.
+
 #### Using `ActiveJob` with `Sidekiq`
 
 https://github.com/mperham/sidekiq/wiki/Active-Job
@@ -93,3 +129,49 @@ Thanks to `ActiveJob`, it can be as simple as:
 UserMailer.welcome_email(@user).deliver_later
 ```
 
+## Caching in general
+
+For static resources like CSS, Javascript files, images and so on, it's possible to cache the entire request. This is done by default by all CDNs (Amazon S3, Cloudflare etc.) and also by Rails. This is the simplest caching situation - the file won't change at all for months sometimes. Browsers will check servers for headers before doing a full request, and this includes assessing the _freshness_ of the content by comparing timestamps and ETags.
+
+BUT! This doesn't work for dynamic apps with logged-in pages and content specific to users.
+
+## Rails caching
+
+Docs: http://guides.rubyonrails.org/caching_with_rails.html
+
+Rails has one of the best caching frameworks out there. It makes it possible to cache fragments of the page instead of the whole thing. It also handles most of the anoying parts for you!
+
+The docs are very good in this case, but the general idea is wrapping parts of views inside `cache` blocks, like so:
+
+```erb
+<% cache('all_users') do %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.subscribed %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+<% end %>
+```
+
+Rails detects when the contents of the block are updated and invalidates the cache accordingly. Whenever the cache is fresh, the app won't hit the database to get the list of users. It's also possible to nest caching blocks - this is called **russian doll caching**:
+
+```erb
+<% cache(cache_key_for_products) do %>
+  All available products:
+  <% Product.all.each do |p| %>
+    <% cache(p) do %>
+      <%= link_to p.name, product_url(p) %>
+    <% end %>
+  <% end %>
+<% end %>
+```
+
+## Code discussed in class
+
+Download it at: 
+https://www.dropbox.com/s/wqdueb70qwjnji2/w8d4-rails-mailer-bgjobs-caching.tgz?dl=0
