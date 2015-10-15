@@ -85,7 +85,7 @@ $ sudo apt-get install redis-server
 
 Running `bin/rails c` or `bin/rails s` **WILL NOT** start the queue workers! They need be started separately (that's the whole point after all - running things separately from the main app). The way to do this changes depending on the backend.
 
-For Sideqik, run `bin/bundle exec sidekiq`
+For Sidekiq, run `bin/bundle exec sidekiq`
 
 (Yes, that's what went wrong during the lecture.)
 
@@ -116,6 +116,15 @@ $ bin/bundle exec sidekiq
 ```
 
 Queues will log things independently from the main app, so bear this in mind when looking for errors.
+
+#### A note on Node.js
+
+There's a Sidekiq library for Node.js:
+
+* https://www.npmjs.com/package/sidekiq
+* https://github.com/loopj/node-sidekiq
+
+Note that it only provides an interface to **enqueue** jobs, not to process them. This means you'll still need to write the background processing code in Ruby.
 
 #### Using `ActiveJob` with `Sidekiq`
 
