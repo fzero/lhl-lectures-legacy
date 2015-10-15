@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   resources :users
+
+  # This is a neat trick used by Sidekiq called "app mounting"
+  # You can have your main Rails app running with a Sinatra app side by side
+  # to do smaller tasks - displaying a monitoring interface in this case.
+  # Protecting the /sidekiq route is up to you though.
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
