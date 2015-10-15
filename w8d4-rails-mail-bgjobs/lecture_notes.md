@@ -6,6 +6,7 @@ As always, the docs are excellent:
 http://guides.rubyonrails.org/action_mailer_basics.html
 
 **Steps:**
+
 1. Generate a mailer
     * `bin/rake g mailer UserMailer`
 2. Add a method for each email you want to send
@@ -59,6 +60,11 @@ We don't want to leave the user waiting for the server **or** the server waiting
 ### Rails 4.2+ has native support for this
 
 http://edgeguides.rubyonrails.org/active_job_basics.html
+
+Yes, you get generators:
+```sh
+$ bin/rails generate job MyBackgroundJob
+```
 
 You'll still need a queuing backend. Most popular gems:
 
