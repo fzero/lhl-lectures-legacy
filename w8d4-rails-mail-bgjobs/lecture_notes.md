@@ -76,6 +76,11 @@ You'll still need a queuing backend. Most popular gems:
 
 Sidekiq and Resque are more popular, but need `redis` to work, while DelayedJob can use a regular SQL database.
 
+Installing redis on Vagrant (and Debian Linux):
+```sh
+$ sudo apt-get install redis-server
+```
+
 #### Using `ActiveJob` with `Sidekiq`
 
 https://github.com/mperham/sidekiq/wiki/Active-Job
