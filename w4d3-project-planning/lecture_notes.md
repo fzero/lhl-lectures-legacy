@@ -88,5 +88,16 @@ But in short:
     - There's a CSS framework for that
         + John Chan hates Bootstrap. Don't listen to him.
     
+#### Git feature branching cheatsheet
+
+1. Ensure your local `master` is up to date: `git checkout master && git pull origin master`
+2. Start your feature branch: `git checkout -b my_feature`
+3. _codecodecode_, `git commit`, _codecode_, **goddammit!**, _codecodecode_, `git commit`, YAY!
+4. Switch back to `master` and update it again: `git checkout master && git pull origin master`
+5. Merge your feature in: `git merge my_feature`
+6. Resolve any conflicts (hopefully you don't have any!)
+7. Test the updated `master` branch locally
+8. `git push origin master`
+
 ---
 Full lecture notes: https://gist.github.com/fzero/d908574641abc0499773
