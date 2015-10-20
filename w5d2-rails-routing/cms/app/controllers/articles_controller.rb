@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = if @author.present?
-      Article.where(author: @author)
+      @author.articles
     else
       Article.all
     end
