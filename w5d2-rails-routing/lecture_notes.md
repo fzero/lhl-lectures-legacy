@@ -27,3 +27,9 @@ Bonus: as I always say, there's a gem for that! Check out FriendlyId at https://
 ### Web console
 
 I've included the `web-console` gem and added it to the layout so you can play with the different path (`authors_path`, `new_author`, `author(id)` and so on) and link helpers (`link_to new_author`) right in the browser.
+
+**IMPORTANT:** If you're running the code inside Vagrant you'll need to add this line inside the `Cms::Application.configure` block in`config/environments/development.rb`:
+
+```ruby
+config.web_console.whitelisted_ips = '10.0.2.2'
+```
