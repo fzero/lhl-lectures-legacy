@@ -18,7 +18,7 @@ class Author < ActiveRecord::Base
     "#{id}_#{slug}"
   end
 
-  # BUT! We want our lugs to work without the id, so we added the following
+  # BUT! We want our slugs to work without the id, so we added the following
   # class method to accomplish that.
 
   def self.find_by_slug(slug)
