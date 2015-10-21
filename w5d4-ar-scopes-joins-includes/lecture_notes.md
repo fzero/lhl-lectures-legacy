@@ -6,7 +6,13 @@ Today we covered a variety of advanced topics related to ActiveRecord. You can f
 
 http://guides.rubyonrails.org/active_record_querying.html
 
-Most of the topics covered are exemplified in this repo, particularly in the `Product` model.
+Most of the topics covered are exemplified in the code, particularly in the `Product` model.
+
+Code discussed in the lecture:
+
+https://www.dropbox.com/s/dbyxiw7smd4yd4q/w5d4-ar-scopes-joins-includes.tgz?dl=0
+
+---
 
 ### Topics covered
 

@@ -130,3 +130,8 @@ The alternative would be...
 ```
 
 Reference: http://api.rubyonrails.org/classes/ActionController/StrongParameters.html
+
+---
+Code discussed in class:
+
+https://www.dropbox.com/s/wq2od5kw2fmy2lr/w5d3-rails-flash-forms.tgz?dl=0
