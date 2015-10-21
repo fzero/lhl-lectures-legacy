@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flashforms</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <% if flash %>
+    <% flash.each do |key, message| %>
+      <p class="notification <%= key %>"><%= message %></p>
+    <% end %>
+  <% end %>
+
+  <%= yield %>
+
+</body>
+
+</html>
