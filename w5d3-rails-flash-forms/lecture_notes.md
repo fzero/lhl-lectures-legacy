@@ -128,3 +128,5 @@ The alternative would be...
 })
 @article.save
 ```
+
+Reference: http://api.rubyonrails.org/classes/ActionController/StrongParameters.html
