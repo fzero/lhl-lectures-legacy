@@ -6,8 +6,11 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
 * Validations: http://guides.rubyonrails.org/active_record_validations.html
 * Callbacks: http://guides.rubyonrails.org/active_record_callbacks.html
 
+Code discussed during the lecture:
+https://www.dropbox.com/s/8u37f2ap4whejr4/w3d4_more_activerecord.tgz?dl=0
 
-### Quick AR review
+
+## Quick AR review
 
 * Basic CRUD
 * Associations
@@ -21,7 +24,7 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
         + `errors[]`
 
 
-### More validations
+## More validations
 
 * Custom validations
     - `validate` with method
@@ -30,7 +33,7 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
         + `errors.add(:field_key, "message")`
 
 
-### Callbacks
+## Callbacks
 
 * What they are and how do they work
     - Adding behaviour
@@ -75,7 +78,7 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
         + `after_commit` / `after_rollback`
 
 
-### Migrations
+## Migrations
 
 * Rake tasks
     - Defined in `Rakefile`
@@ -88,20 +91,28 @@ I'll start again by saying the ActiveRecord documentation is extensive and very 
 * Migration classes
     - Always inherit from `ActiveRecord::Migration`
     - Must have a `change` method where all changes are made
-    - See the `db/migrate` in the lecture code
+    - See `db/migrate/` in the lecture code
 * Running migrations
     - `rake db:migrate`
     - `rake db:rollback`
+    - Checking version: `rake db:version`
 
+**BONUS:** Use this command on your terminal to create timestamped migration files:
+```sh
+touch $(date '+%Y%m%d%H%M%S')_migration_name.rb
+```
+Don't forget to change `migration_name` to the name of your migration class!
 
-### Environments
+Full docs: http://edgeguides.rubyonrails.org/active_record_migrations.html
+
+## Environments
 
 * How to differentiate between development and test databases
     - First of all: have different databases
         + `project_development`, `project_test`, `project_production`...
-    - How to use different ones?
+    - How to pick the one to use?
         + Environment variables
             * Defined on the terminal with `variable=value`
-            * Readable from Ruby inside the `ENV` global
-            * `APP_ENV=development ruby myscript.rb` => `ENV['APP_ENV']`
+            * Readable from Ruby inside the `ENV[]` global
+            * `APP_ENV=development ruby myscript.rb` => `ENV['APP_ENV'] == 'development'`
         + Look inside `setup.rb` to see how `DB_NAME` is defined.
