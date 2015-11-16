@@ -1,6 +1,6 @@
 # Intro to Rails
 
-Today we talked about Rails and how it relates to the Sinatra work we've been doing so far. We talked about how Rails organizes the component parts of the application (Models, Views, Controllers, Tests) and discussed some of the add-ons that come built-in. We talked about how Rails is a curated selection of components that can be changed if you want to, but that provides a pretty solid starting point for a full web application.
+Today we talked about Rails and how it relates to the Sinatra work we've been doing so far. We've seen how Rails organizes the component parts of the application (Models, Views, Controllers, Tests) and discussed some of the add-ons that come built-in. Rails is a curated selection of components that can be changed if you want to, but that provides a pretty solid starting point for a full web application.
 
 We've explored how rails can generate code for us - from migrations to full application scaffolds - and briefly discussed resourceful routing (to be explored in detail on the next lecture).
 
