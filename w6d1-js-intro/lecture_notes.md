@@ -175,7 +175,7 @@ BUT! You can have functions inside functions:
 
 ## Closures!
 
-We already know we can return functions as values, but the cool thing is they _always keep their scope_ (local variables and such) and pass them along. This is a cool thing called _closure_:
+We already know we can return functions as values, but the cool thing is they _always keep their internal scope_ (local variables and such) and pass them along. This function+data package is called a _closure_:
 ```javascript
   function multiplier(factor) {
     return function(number) {

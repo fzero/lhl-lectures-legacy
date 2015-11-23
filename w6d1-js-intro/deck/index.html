@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/league.css" id="theme">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -272,8 +272,9 @@
           <section data-markdown>
             ## Closures!
 
-            We already know we can return functions as values, but the cool thing is they _always keep their scope_
-            (local variables and such) and pass them along. This is a cool thing called _closure_:
+            We already know we can return functions as values, but the cool thing is they _always
+            keep everything inside their scope_ (local variables and such) and pass them along.
+            This function+data package is called a _closure_:
 
             ```javascript
               function multiplier(factor) {
@@ -282,7 +283,7 @@
                 };
               }
 
-              // The function being returned will remember the factor parameter!
+              // The function being returned contains factor = 2
               var twice = multiplier(2);
 
               twice(5);
