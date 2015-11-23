@@ -104,6 +104,32 @@ Object-based (but NOT Object Oriented!)
   NaN, undefined, null
 ```
 
+## Comparisons
+
+Javascript has _two_ different ways to compare values.
+```javascript
+  // ==, >=, <= and != will do type conversions on the fly.
+  // All comparisons below will return true
+
+  '1' == 1
+  0 == false
+  '' == false
+  0 == ''
+  [] == ''
+  [] == 0
+  '5' <= 10
+
+  // === and !== will also compare types
+  // All comparisons below will return false
+
+  '1' === 1
+  0 === false
+  '' === false
+  0 === ''
+  [] === ''
+  [] === 0
+```
+
 ## Functions and scopes
 
 Functions are exactly like methods and are the only available scope in Javascript. This means **_all_** variables are global unless defined inside a function.
