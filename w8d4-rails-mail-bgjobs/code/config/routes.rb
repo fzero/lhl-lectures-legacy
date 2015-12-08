@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   resources :users
+  root 'users#index'
 
   # This is a neat trick used by Sidekiq called "app mounting"
   # You can have your main Rails app running with a Sinatra app side by side
