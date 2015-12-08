@@ -1,4 +1,4 @@
-class EmailWorkerJob < ActiveJob::Base
+class ExampleWorkerJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
@@ -6,4 +6,5 @@ class EmailWorkerJob < ActiveJob::Base
     sleep rand(10)
     true
   end
+
 end
