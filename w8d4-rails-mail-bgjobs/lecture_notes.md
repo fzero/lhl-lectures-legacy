@@ -81,13 +81,18 @@ Installing redis on Vagrant (and Debian Linux):
 $ sudo apt-get install redis-server
 ```
 
+Mac OS X with Homebrew:
+```sh
+$ brew install redis-server
+```
+
+Then run it with `redis-server`. Use `redis-cli` to connect to it directly. More information on Redis: http://redis.io
+
 #### VERY IMPORTANT: Queues are processed separately!
 
 Running `bin/rails c` or `bin/rails s` **WILL NOT** start the queue workers! They need be started separately (that's the whole point after all - running things separately from the main app). The way to do this changes depending on the backend.
 
-For Sidekiq, run `bin/bundle exec sidekiq`
-
-(Yes, that's what went wrong during the lecture.)
+For Sidekiq, make sure Redis is running (`redis-server` on a terminal window) and then run `bin/bundle exec sidekiq`.
 
 You will see something like this:
 
@@ -117,6 +122,14 @@ $ bin/bundle exec sidekiq
 
 Queues will log things independently from the main app, so bear this in mind when looking for errors.
 
+Sidekiq will look at the `default` queue if you don't add any options. To look for different queues (the special `mailers` queue that Rails uses for `deliver_later`, for example), just use the `-q` command line option for each queue:
+
+```
+$ bin/bundle exec sidekiq -q default -q mailers
+```
+
+You can always check all available options with `sidekiq --help`.
+
 #### A note on Node.js
 
 There's a Sidekiq library for Node.js:
@@ -133,9 +146,13 @@ https://github.com/mperham/sidekiq/wiki/Active-Job
 ## Sending emails on a background job
 
 Thanks to `ActiveJob`, it can be as simple as:
-
 ```ruby
 UserMailer.welcome_email(@user).deliver_later
+```
+
+Email tasks are going to be added to the `mailers` queue by default. To override this:
+```ruby
+UserMailer.welcome_email(@user).deliver_later(queue: :default)
 ```
 
 ## Caching in general
@@ -153,7 +170,7 @@ Rails has one of the best caching frameworks out there. It makes it possible to 
 The docs are very good in this case, but the general idea is wrapping parts of views inside `cache` blocks, like so:
 
 ```erb
-<% cache('all_users') do %>
+<% cache(@users) do %>
   <% @users.each do |user| %>
     <tr>
       <td><%= user.name %></td>
@@ -167,7 +184,7 @@ The docs are very good in this case, but the general idea is wrapping parts of v
 <% end %>
 ```
 
-Rails detects when the contents of the block are updated and invalidates the cache accordingly. Whenever the cache is fresh, the app won't hit the database to get the list of users. It's also possible to nest caching blocks - this is called **russian doll caching**:
+Rails detects when `@users` is updated and invalidates the cache accordingly. Whenever the cache is fresh, the app won't hit the database to get the list of users. It's also possible to nest caching blocks - this is called **russian doll caching**:
 
 ```erb
 <% cache(cache_key_for_products) do %>
