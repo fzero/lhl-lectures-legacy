@@ -88,6 +88,10 @@ $ brew install redis-server
 
 Then run it with `redis-server`. Use `redis-cli` to connect to it directly. More information on Redis: http://redis.io
 
+#### Using `ActiveJob` with `Sidekiq`
+
+https://github.com/mperham/sidekiq/wiki/Active-Job
+
 #### VERY IMPORTANT: Queues are processed separately!
 
 Running `bin/rails c` or `bin/rails s` **WILL NOT** start the queue workers! They need be started separately (that's the whole point after all - running things separately from the main app). The way to do this changes depending on the backend.
@@ -138,10 +142,6 @@ There's a Sidekiq library for Node.js:
 * https://github.com/loopj/node-sidekiq
 
 Note that it only provides an interface to **enqueue** jobs, not to process them. This means you'll still need to write the background processing code in Ruby.
-
-#### Using `ActiveJob` with `Sidekiq`
-
-https://github.com/mperham/sidekiq/wiki/Active-Job
 
 ## Sending emails on a background job
 
