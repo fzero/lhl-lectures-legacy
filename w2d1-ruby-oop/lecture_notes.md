@@ -19,7 +19,7 @@ Instead of simply acting upon data, the code is written in a way that describes 
         + defining properties (instance variables)
         + reading properties (getters, `attr_reader`)
         + changing properties (setters, `attr_writer`)
-        + shortcuts (`attr_accessible`)
+        + shortcuts (`attr_accessor`)
     - Scopes (separate memory spaces)
         + regular variables -> restricted to a block
         + instance variables -> restricted to object
