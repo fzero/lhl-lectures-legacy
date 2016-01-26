@@ -1,0 +1,15 @@
+<h1>Sessions!</h1>
+
+<table class="cookies_table">
+  <tr>
+    <th>Session name</th>
+    <th>Contents</th>
+  </tr>
+
+  <% session.each do |name, contents| %>
+    <tr>
+      <td><%= name %></td>
+      <td><%= contents %></td>
+    </tr>
+  <% end %>
+</table>
