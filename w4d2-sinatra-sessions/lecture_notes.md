@@ -55,7 +55,17 @@ Look at `actions.rb` in the code discussed in class for more details.
     - Connects Views and Models
     - In this context, receives user's HTTP requests and deals with authentication
 
+## Bonus: bash aliases
+
+It's possible to create shortcuts to commands on the terminal using `alias`:
+```sh
+$ alias "be"="bundle exec"
+$ alias "shot"="bundle exec shotgun -p 3000 -o 0.0.0.0"
+```
+
+From then on, you just have to type `be` for `bundle exec` and `shot` to start `shotgun` with all parameters. To make your aliases load automatically, edit the `.bash_profile` file in your home directory and add your aliases to the end.
+
 ## Code
 
 The code discussed in class can be found at:
- 
+
