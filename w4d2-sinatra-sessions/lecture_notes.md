@@ -10,10 +10,10 @@ $ bundle exec pry './config/environment.rb'
 ```
 
 * Rakefile
-    - Contains useful bits of code that run in the context of your application. the format of the tasks is always:
+    - Contains useful bits of code that run in the context of your application. The format of the tasks is always:
 
 ```ruby
-desc "description of what the task does"
+desc "Description of what the task does"
 task "taskname" do
   # Your ruby code goes here
 end
@@ -54,6 +54,7 @@ Look at `actions.rb` in the code discussed in class for more details.
 * Controller
     - Connects Views and Models
     - In this context, receives user's HTTP requests and deals with authentication
+    - Should prepare data for the views
 
 ## Bonus: bash aliases
 
