@@ -6,10 +6,6 @@ The Rails documentation is very comprehensive in this subject - and also very we
 
 http://guides.rubyonrails.org/routing.html
 
-We've also quickly discussed form helpers, which also stem from resourceful routes. They make it easier to generate forms in a way that prevents hard-coding url actions, and also make it trival to create forms that auto-fill whenever data is present (e.g. using the same form for `/new` and `/edit`) and creating more complex elements with pre-populated data, such as `<select>` elements. As always, the Rails docs are on point:
-
-http://guides.rubyonrails.org/form_helpers.html
-
 ## Code
 
 The code discussed in class can be found at the link below, and it includes additional notes and helpful comments. Be sure to take a look at `config/routes.rb` and the referenced controllers and models.
