@@ -10,7 +10,7 @@ Most of the topics covered are exemplified in the code, particularly in the `Pro
 
 Code discussed in the lecture:
 
-https://www.dropbox.com/s/dbyxiw7smd4yd4q/w5d4-ar-scopes-joins-includes.tgz?dl=0
+https://www.dropbox.com/s/fwzarshqukvt373/w5d4-ar-scopes.tgz?dl=1
 
 ---
 
@@ -60,5 +60,3 @@ clients.each do |client|
   puts client.address.street_and_number # No additional queries here!
 end
 ```
-
-- Fabio
