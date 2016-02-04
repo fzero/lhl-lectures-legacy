@@ -43,4 +43,22 @@ https://www.dropbox.com/s/dbyxiw7smd4yd4q/w5d4-ar-scopes-joins-includes.tgz?dl=0
    * Eager loading: `includes`
       * Solves N+1 queries
 
+```ruby
+# Un-optimized version:
+clients = Client.all # First SQL query
+ 
+clients.each do |client|
+  puts client.address.street_and_number # +1 additional query for each address!
+end
+
+# Using `includes`, the association gets cached and only two queries are made:
+# 1. SELECT * FROM clients
+# 2. SELECT * FROM addresses WHERE client_id = client.id
+
+clients = Client.includes(:address).all 
+clients.each do |client|
+  puts client.address.street_and_number # No additional queries here!
+end
+```
+
 - Fabio
