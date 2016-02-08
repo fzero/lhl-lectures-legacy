@@ -1,0 +1,5 @@
+/* make code bigger */
+.reveal code {
+  font-size: 140%;
+  line-height: 140%;
+}
