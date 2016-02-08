@@ -310,18 +310,23 @@ setTimeout(function(){
 
 ### Typical use: AJAX
 ```javascript
-// This bit of code is using jQuery to fetch data from LCBO's API
-$.get('http://www.corsproxy.com/lcboapi.com/products', function(data) {
-  var products = data.result; // result is a property of the data object
-  console.log(products[0].name);
+// This bit of code is using jQuery to fetch test data
+
+var url = 'http://httpbin.org/get?name=Fabio&power=9001';
+
+$.get(url, function(data) {
+
+  // result is a property of the data object
+  var contents = data.result;
+  console.log(contents);
 
   // If you want to run code after the request is done, put it here
-  console.log("done for real");
+  console.log("Done for real");
 });
 
 // Javascript makes the get request
 // and then it immediately runs the code below
-console.log("done");
+console.log("I'm done! WAT?");
 ```
 
 The request goes through wihout blocking the browser.
