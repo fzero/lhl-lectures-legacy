@@ -1,0 +1,10 @@
+.first_header {
+  font-size: 80px;
+}
+
+.blocky_p {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: solid 1px black;
+}

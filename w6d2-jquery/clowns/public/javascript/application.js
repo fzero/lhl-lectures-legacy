@@ -61,7 +61,8 @@ var Clowns = {
     //Again, the 'data' param is the JSON data from the server
     if (data.result) {
       Clowns.getClowns();
-    } else {
+    }
+    else {
       alert("You screwed something up.");
     }
   }
