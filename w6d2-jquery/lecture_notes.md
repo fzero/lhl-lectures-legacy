@@ -69,4 +69,3 @@ $(function(){
 ## We also did a little AJAX intro!
 * Intro to JSON APIs
 * `$.ajax`, `$.get`, `$.post`, `$.getJSON`
-* The clowns AJAX example app: https://github.com/donburks/ajax-example
