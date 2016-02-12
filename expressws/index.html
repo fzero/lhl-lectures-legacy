@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Websockets!</title>
+</head>
+
+<body>
+
+  <h1>Hello World!</h1>
+
+  <form id="form" id="chat_form">
+    <input id="chat_input" type="text">
+    <input type="submit" value="Send">
+  </form>
+
+  <div id="future"></div>
+
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+  <script>
+    function $(query) {
+      return document.querySelector(query);
+    }
+    var socket = io.connect('http://localhost:4000');
+
+    socket.on('connect', function(data) {
+      socket.emit('join', 'Hello from client!');
+    });
+
+    socket.on('messages', function(data){
+      console.log(data);
+    });
+
+    socket.on('broad', function(data) {
+      $('#future').innerHTML += `<p>${data}</p>`;
+    });
+
+    socket.on('banana', function(data){
+      console.log(`${data} asked for bananas`);
+    });
+
+    $('#form').addEventListener('submit', function(e){
+      e.preventDefault();
+      var message = $('#chat_input').value;
+      socket.emit('messages', message);
+      $('#chat_input').value = null;
+    });
+ </script>
+
+</body>
+</html>
