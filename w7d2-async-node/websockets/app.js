@@ -17,7 +17,6 @@ var server = require('http').createServer(app);
 // Websockets support
 var io = require('socket.io')(server);
 
-
 app.get('/test', function(req, res) {
   var data = {
     name: "Fabio",

@@ -1,0 +1,19 @@
+{
+  "name": "nosleep",
+  "version": "1.0.0",
+  "description": "Express async example",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Add tests someday\"",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "W7D2",
+    "LighthouseLabs"
+  ],
+  "author": "Fabio Neves",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
