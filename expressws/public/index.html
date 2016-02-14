@@ -3,6 +3,7 @@
 
 <head>
   <title>Websockets!</title>
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -33,11 +34,7 @@
     });
 
     socket.on('broad', function(data) {
-      $('#future').innerHTML += `<p>${data}</p>`;
-    });
-
-    socket.on('banana', function(data){
-      console.log(`${data} asked for bananas`);
+      $('#future').innerHTML += '<p>' + data + '</p>';
     });
 
     $('#form').addEventListener('submit', function(e){
