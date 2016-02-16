@@ -61,35 +61,30 @@ app.get('/example/:thing', function(req, res) {
 
 Since it's likely you'll have to handle callbacks inside callbacks, your code can get messy pretty quickly. That's why people smarter than us invented the *promise pattern*, so instead of writing:
 ```js
-fs.readFile("file.json", function (err, val) {
-    if (err) {
-        console.error("unable to read file");
-    }
-    else {
-        try {
-            val = JSON.parse(val);
-            console.log(val.success);
-        }
-        catch (e) {
-            console.error("invalid json in file");
-        }
-    }
+step1(function (value1) {
+    step2(value1, function(value2) {
+        step3(value2, function(value3) {
+            step4(value3, function(value4) {
+                // Do something with value4
+            });
+        });
+    });
 });
 ```
 
 You can write:
 ```js
-fs.readFileAsync("file.json")
-.then(JSON.parse)
-.then(function (val) {
-    console.log(val.success);
+Q.fcall(promisedStep1)
+.then(promisedStep2)
+.then(promisedStep3)
+.then(promisedStep4)
+.then(function (value4) {
+    // Do something with value4
 })
-.catch(SyntaxError, function (e) {
-    console.error("invalid json in file");
+.catch(function (error) {
+    // Handle any error from all above steps
 })
-.catch(function (e) {
-    console.error("unable to read file");
-});
+.done();
 ```
 
 There are several promise libraries avaliable, but the most used ones are [Q](http://documentup.com/kriskowal/q/) and [Bluebird](http://bluebirdjs.com/docs/getting-started.html). They use pretty much the same syntax, which is the same being officially adopted by ES6. [jQuery also has its own implementation of promises](http://api.jquery.com/promise/), and you can use it directly on AJAX requests and other situations.
