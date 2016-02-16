@@ -31,7 +31,6 @@ io.on('connection', function(client) {
   client.on('join', function(data) {
     console.log(data);
     client.emit('messages', 'Hello from server!');
-    client.emit('banana', 'Fabio');
   });
 
   client.on('messages', function(data) {
