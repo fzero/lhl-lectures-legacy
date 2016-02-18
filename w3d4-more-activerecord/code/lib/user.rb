@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validate :valid_email
 
   has_many :posts
+  has_many :comments, dependent: :destroy
 
   after_create :send_confirmation_email
   before_destroy :check_if_admin
