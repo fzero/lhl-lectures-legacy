@@ -1,7 +1,8 @@
 <ul>
   <% data.each do |key, value| %>
     <li>
-      <strong><%= key %>:</strong> <%= value.to_s unless value.is_a?(Hash) %>
+      <strong><%= key %>:</strong>
+      <%= value.to_s unless value.is_a?(Hash) || value.is_a?(Array) %>
     </li>
     <% if value.is_a?(Hash) %>
       <%= erb :_recursive_hash, locals: {data: value} %>
