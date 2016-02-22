@@ -7,7 +7,9 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 
+# Omniauth providers
 require 'omniauth-twitter'
+require 'omniauth-facebook'
 require 'omniauth-google-oauth2'
 
 require 'pry'
@@ -25,9 +27,12 @@ configure do
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
 
+  # Omniauth keys go here! Right now this is looking for environment variables
+  # You can hardcode your keys below for testing purpuses
   use OmniAuth::Builder do
-    provider :google_oauth2, '198268182547-4efp9mscmc6328t2fe3vlk18e108dumc.apps.googleusercontent.com', 'pys0wjqZSJRZzi6zLPnv-NUG'
-    provider :twitter, 'ch8OLPbQPASA0fW72YSvMh3vS', 'NMXZlUTzlT9zgrbiXCS7sPKkI0bQb2tZYgZnHZHiH5uIyZfd1B'
+    provider :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET']
+    provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+    provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
   end
 end
 

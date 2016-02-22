@@ -23,7 +23,7 @@ get "/auth/:provider/callback" do
   erb :callback
 end
 
-# OAuth callback - GET
+# OAuth callback - POST
 post "/auth/:provider/callback" do
   @authdata = env['omniauth.auth']
   erb :callback

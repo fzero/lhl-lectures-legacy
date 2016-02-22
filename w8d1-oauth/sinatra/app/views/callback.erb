@@ -3,28 +3,12 @@
 <h3>Provider: <%= @authdata.provider %> / uid: <%= @authdata.uid %></h3>
 
 <h4>Credentials</h4>
-<ul>
-  <% @authdata.credentials.each do |key, value| %>
-    <li>
-      <strong><%= key %>:</strong> <%= value %>
-    </li>
-  <% end %>
-</ul>
+<%= erb :_recursive_hash, locals: {data: @authdata.credentials} %>
 
-<h4>Additional data</h4>
-<ul>
-  <% @authdata.info.each do |key, value| %>
-    <li>
-      <strong><%= key %>:</strong> <%= value unless value.is_a?(Hash) %>
-    </li>
-    <% if value.is_a?(Hash) %>
-      <ul>
-        <% value.each do |subkey, subvalue| %>
-          <li>
-            <strong><%= subkey %>:</strong> <%= subvalue unless subvalue.is_a?(Hash) %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  <% end %>
-</ul>
+<h4>Info</h4>
+<%= erb :_recursive_hash, locals: {data: @authdata.info} %>
+
+<hr>
+
+<h4>Everything in <code>env['omniauth.auth']</code></h4>
+<%= erb :_recursive_hash, locals: {data: @authdata} %>

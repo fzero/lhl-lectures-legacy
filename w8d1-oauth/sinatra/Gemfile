@@ -13,6 +13,7 @@ gem 'puma'
 # OAuth
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'pry'
