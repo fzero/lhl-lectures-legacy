@@ -1,0 +1,19 @@
+body {
+  margin: 5%;
+}
+
+h1 {
+  border-bottom: 1px solid;
+}
+
+.cookies_table {
+  width: 50%;
+  margin-left: 25%;
+  border: 1px solid;
+}
+
+.cookies_table th,
+.cookies_table td {
+  text-align: left;
+  padding: 10px;
+}

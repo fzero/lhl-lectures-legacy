@@ -1,0 +1,21 @@
+source "https://rubygems.org"
+
+gem 'rake'
+gem 'activesupport'
+gem 'sqlite3'
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-activerecord'
+
+gem 'puma'
+
+# OAuth
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+
+group :development, :test do
+  gem 'pry'
+  gem 'shotgun'
+  gem 'faker'
+end
