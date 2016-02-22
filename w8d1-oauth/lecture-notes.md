@@ -69,3 +69,7 @@ The **application** needs to be registered as an OAuth client with the **provide
 ## Example Rails code with Facebook user login/creation
 
 Courtesy of Railscasts: http://railscasts.com/episodes/360-facebook-authentication
+
+## Code discussed in class
+
+Simple sinatra app with an OAuth callback inspector: https://www.dropbox.com/s/0knudhzm7fz7qxn/w8d1-oauth.tgz?dl=0
