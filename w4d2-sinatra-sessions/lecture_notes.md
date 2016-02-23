@@ -1,4 +1,4 @@
-# W3D2 - I remember you (a.k.a. cookies, sessions and MVC)
+# W4D2 - I remember you (a.k.a. cookies, sessions and MVC)
 
 ## Sinatra skeleton (https://github.com/lighthouse-labs/sinatra-skeleton)
 * Loading order
@@ -10,10 +10,10 @@ $ bundle exec pry './config/environment.rb'
 ```
 
 * Rakefile
-    - Contains useful bits of code that run in the context of your application. The format of the tasks is always:
+    - Contains useful bits of code that run in the context of your application. the format of the tasks is always:
 
 ```ruby
-desc "Description of what the task does"
+desc "description of what the task does"
 task "taskname" do
   # Your ruby code goes here
 end
@@ -28,16 +28,23 @@ task "console" do
 end
 ```
 
+Now you have a console with all your models just by running `bundle exec rake console`.
+
 ## Cookies and sessions
 * Cookies: It's all about remembering...
+    * Stored in the browser, sent back to the server as a header on every request
+    * Danger! `document.cookie`
 * Sessions: ...but we gotta be safe
+    * All session data is stored in a single encrypted cookie that is decrypted and parsed by the server
 * Using Chrome devtools
-    - Danger! `document.cookie`
 
 ## Login flow
 * Checking credentials (login/pass)
 * Persisting a user session
+    * Set the session on successful login: `session[:user_id] = @user.id`
+    * Get a user from the session: `@user = User.find_by(id: session[:user_id])`
 * Logging out
+    * `session.delete(:user_id)` and redirect somewhere else
 * Sinatra helpers
 
 Look at `actions.rb` in the code discussed in class for more details.
@@ -54,7 +61,6 @@ Look at `actions.rb` in the code discussed in class for more details.
 * Controller
     - Connects Views and Models
     - In this context, receives user's HTTP requests and deals with authentication
-    - Should prepare data for the views
 
 ## Bonus: bash aliases
 
