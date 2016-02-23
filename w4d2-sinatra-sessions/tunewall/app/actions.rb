@@ -37,6 +37,8 @@ get '/login' do
 end
 
 # Login validation
+# Note this action doesn't render anything - just redirects to
+# two other actions depending on a successful login.
 post '/validate' do
   email = params[:email]
   password = params[:password]
