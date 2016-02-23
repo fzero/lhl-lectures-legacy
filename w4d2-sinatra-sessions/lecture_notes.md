@@ -10,7 +10,7 @@ $ bundle exec pry './config/environment.rb'
 ```
 
 * Rakefile
-    - Contains useful bits of code that run in the context of your application. the format of the tasks is always:
+    - Contains useful bits of code that run in the context of your application. The format is always:
 
 ```ruby
 desc "description of what the task does"
@@ -29,6 +29,12 @@ end
 ```
 
 Now you have a console with all your models just by running `bundle exec rake console`.
+
+To see all available `rake` tasks:
+
+```sh
+$ bundle exec rake -T
+```
 
 ## Cookies and sessions
 * Cookies: It's all about remembering...
