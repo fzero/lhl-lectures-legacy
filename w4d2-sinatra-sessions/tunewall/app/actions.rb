@@ -1,9 +1,10 @@
 helpers do
 
   def check_user
-    session.delete(:login_error)
     @user = User.find_by(id: session[:user_id])
-    unless @user
+    if @user
+      session.delete(:login_error)
+    else
       session[:login_error] = "You must be logged in."
       redirect '/login'
     end
@@ -45,6 +46,7 @@ post '/validate' do
     redirect '/tunes'
   else
     session.delete(:user_id)
+    session[:login_error] = "You must be logged in."
     redirect '/login'
   end
 end
@@ -57,7 +59,6 @@ end
 
 # Tunes for the current user
 get '/tunes' do
-  check_user # If logged in, I'll have @user ready to go.
+  check_user
   erb :tunes
 end
-
