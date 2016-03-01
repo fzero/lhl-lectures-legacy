@@ -8,7 +8,7 @@ http://guides.rubyonrails.org/routing.html
 
 ## Code
 
-The code discussed in class can be found at the link below, and it includes additional notes and helpful comments. Be sure to take a look at `config/routes.rb` and the referenced controllers and models.
+The code linked below is a skeleton for a CMS including additional notes and helpful comments. Be sure to take a look at `config/routes.rb` and the referenced controllers and models.
 
 https://www.dropbox.com/s/vlxhzn6jubdx0st/w5d2-rails-routing.tgz?dl=0
 
