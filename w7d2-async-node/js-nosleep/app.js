@@ -1,5 +1,6 @@
 // Load Express.js
 var express = require('express')
+var bodyParser = require('body-parser')
 
 // Create Express app
 var app = express()
@@ -13,6 +14,10 @@ app.use(function (req, res, next) {
   console.log("%s - %s %s", now, req.method, req.originalUrl);
   next()
 });
+
+// Load bodyParser to handle form POSTs and JSON
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Routes
 app.get('/bodymovin', function(req, res){
@@ -31,5 +36,19 @@ app.get('/sleep/:seconds', function(req, res){
   }, seconds * 1000)
 });
 
+app.get('/form', function(req, res){
+  res.send(`
+    <form action="/name" method="post">
+      <input type="text" name="name">
+      <input type="submit" value="go">
+    </form>
+  `);
+});
+
+app.post('/name', function(req, res){
+  console.log("--- Name was " + req.body.name);
+});
+
 // Start server
-server.listen(4000)
+console.log("Listening on port 4000");
+server.listen(4000);
