@@ -1,0 +1,13 @@
+<h1>Edit tune <%= @tune.artist %> - <%= @tune.title %></h1>
+
+<%= erb :'tunes/_form', locals: {tune: @tune} %>
+
+<script>
+  $('#tune_form').on('submit', function(ev){
+    ev.preventDefault();
+    var formdata = $(this).serialize();
+    $.ajax('/tunes', {method: 'PUT', data: formdata}, function(result){
+      window.location.href = "/tunes";
+    })
+  })
+</script>
