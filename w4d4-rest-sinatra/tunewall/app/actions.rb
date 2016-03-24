@@ -1,5 +1,7 @@
 helpers do
 
+  # Get logged-in user or redirects to login page
+  # Uses session[:login_error] to store an error message when needed
   def check_user
     @user = User.find_by(id: session[:user_id])
     if @user
@@ -10,31 +12,30 @@ helpers do
     end
   end
 
+  # Gets tune from params[:id] or redirects to tune list
+  def get_tune
+    @tune = Tune.find_by(id: params[:id])
+    redirect '/tunes' unless @tune
+  end
+
 end
+
 
 # Home
 get '/' do
-  erb :index
+  if @user
+    redirect '/tunes'
+  else
+    redirect '/login'
+  end
 end
 
-# List cookies
-get '/cookies' do
-  cookies[:cookie1] = "Chocolate chip"
-  cookies[:cookie2] = "Oreo"
-  erb :cookies
-end
-
-# List sessions
-get '/sessions' do
-  session[:secret1] = "This is a secret session variable!"
-  session[:secret2] = "And this is another one"
-  erb :sessions
-end
 
 # Login
 get '/login' do
   erb :login
 end
+
 
 # Login validation
 # Note this action doesn't render anything - just redirects to
@@ -53,11 +54,13 @@ post '/validate' do
   end
 end
 
+
 # Logout
 get '/logout' do
   session.delete(:user_id)
   redirect '/login'
 end
+
 
 # Tunes for the current user
 # index action for resource tunes
@@ -67,27 +70,34 @@ get '/tunes' do
   erb :'tunes/index'
 end
 
-# Display the form to add a new tune
+
+# Display a form to add a new tune
 get '/tunes/new' do
   check_user
   @tune = @user.tunes.new
   erb :'tunes/new'
 end
 
-# Display a fomr to edit an existing tune
+
+# Display a form to edit an existing tune
 get '/tunes/:id/edit' do
   check_user
-  @tune = Tune.find_by(id: params[:id])
+  get_tune
   redirect '/tunes/new' unless @tune
   erb :'tunes/edit'
 end
 
-# show action for tunes
+
+# Show a tune
 # R in CRUD
 get '/tunes/:id' do
+  check_user
+  get_tune
+  erb :'tunes/show'
 end
 
-# create action for tunes
+
+# Create a tune
 # C in CRUD
 post '/tunes' do
   check_user
@@ -104,10 +114,12 @@ post '/tunes' do
   end
 end
 
+
 # Update a tune
+# U in CRUD
 put '/tunes' do
   check_user
-  @tune = Tune.find_by(id: params[:id])
+  get_tune
   @tune.artist = params[:artist]
   @tune.title = params[:title]
   @tune.url = params[:url]
@@ -119,7 +131,39 @@ put '/tunes' do
   end
 end
 
+
+# Alternative route to update
+post '/tunes/:id/update' do
+  check_user
+  get_tune
+  @tune.artist = params[:artist]
+  @tune.title = params[:title]
+  @tune.url = params[:url]
+  @tune.comments = params[:comments]
+  if @tune.save
+    redirect '/tunes'
+  else
+    redirect "/tunes/#{params[:id]}/edit"
+  end
+end
+
+
 # Delete a tune
+# D in CRUD
 delete '/tunes' do
+  check_user
+  get_tune
+  @tune.destroy
+  redirect '/tunes'
+end
+
+
+# Alternative route to delete a tune
+# Dangerous, I know.
+get '/tunes/:id/delete' do
+  check_user
+  get_tune
+  @tune.destroy
+  redirect '/tunes'
 end
 

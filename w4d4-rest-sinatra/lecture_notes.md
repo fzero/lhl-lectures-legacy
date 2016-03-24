@@ -1,84 +1,34 @@
-# W4D2 - I remember you (a.k.a. cookies, sessions and MVC)
-
-## Sinatra skeleton (https://github.com/lighthouse-labs/sinatra-skeleton)
-* Loading order
-    - It all starts with `config/environment.rb`, which requires everything else
-    - To run a pry console on the context of your application, run this from the project root:
-
-```shell
-$ bundle exec pry './config/environment.rb'
-```
-
-* Rakefile
-    - Contains useful bits of code that run in the context of your application. The format is always:
-
-```ruby
-desc "description of what the task does"
-task "taskname" do
-  # Your ruby code goes here
-end
-```
-
-Example: run pry in the context of the app.
-
-```ruby
-desc 'Development console'
-task "console" do
-  pry
-end
-```
-
-Now you have a console with all your models just by running `bundle exec rake console`.
-
-To see all available `rake` tasks:
-
-```sh
-$ bundle exec rake -T
-```
-
-## Cookies and sessions
-* Cookies: It's all about remembering...
-    * Stored in the browser, sent back to the server as a header on every request
-    * Danger! `document.cookie`
-* Sessions: ...but we gotta be safe
-    * All session data is stored in a single encrypted cookie that is decrypted and parsed by the server
-* Using Chrome devtools
-
-## Login flow
-* Checking credentials (login/pass)
-* Persisting a user session
-    * Set the session on successful login: `session[:user_id] = @user.id`
-    * Get a user from the session: `@user = User.find_by(id: session[:user_id])`
-* Logging out
-    * `session.delete(:user_id)` and redirect somewhere else
-* Sinatra helpers
-
-Look at `actions.rb` in the code discussed in class for more details.
+# W4D4 - MVC / REST / Sinatra review
 
 ## Super quick intro to the Model-View-Controller pattern
 
-* Model
-    - Yes, we're talking ActiveRecord here
-    - Has everything that concerns data, validations and business logic
-* View
-    - The part the user interacts with
-    - In this context, we're talking about erb templates
-    - Should contain as little logic as possible: iterations and conditionals, but nothing else
-* Controller
-    - Connects Views and Models
-    - In this context, receives user's HTTP requests and deals with authentication
+* Model: Database, validations and so on. Usually a ORM like ActiveRecord.
+* View: Displays data to the user.
+* Controller: Receives user requestes and prepares the views. The _glue_ between Model and View.
 
-## Bonus: bash aliases
+## REST
 
-It's possible to create shortcuts to commands on the terminal using `alias`:
-```sh
-$ alias "be"="bundle exec"
-$ alias "shot"="bundle exec shotgun -p 3000 -o 0.0.0.0"
-```
+It's all about mapping models and CRUD operations over HTTP. A model plus the HTTP mapping is called a _resource_. The HTTP verbs map nicely to CRUD actions, but there's one caveat: you can make PUT/PATCH/DELETE requests with raw HTML at this point in time. You have to use Javascript or alternate routes to work around that.
 
-From then on, you just have to type `be` for `bundle exec` and `shot` to start `shotgun` with all parameters. To make your aliases load automatically, edit the `.bash_profile` file in your home directory and add your aliases to the end.
+Also note that you shouldn't have display logic on your POST/PUT/PATCH/DELETE actions. Those endpoints **receive information** - use GET requests to display forms. See mapping below and example code for more information.
 
-## Code
+* model: Tune
+    - CREATE
+        + **POST /tunes** -> creates a new tune
+    - READ
+        + **GET /tunes** -> list all tunes (index)
+        + **GET /tunes/:id** -> get tune with id = :id (show)
+    - UPDATE
+        + **PUT/PATCH /tunes/:id** -> update a tune with id = :id
+        + workaround: **POST /tunes/:id/update**
+    - DELETE
+        + **DELETE /tunes/:id** -> Deletes tune with id = :id
+        + workaround: **POST/GET /tunes/:id/delete**
+            * POST is recommended, but you can use get if you need a simple link. Make sure to confirm deletion when using GET!
+    - Additional routes:
+        + **GET /tunes/new** -> display form to add a new tune
+        + **GET /tunes/:id/edit** -> display form to edit an existing tune
 
-The code discussed in class can be found at: 
-https://www.dropbox.com/s/1ejokuo2w1jq6qj/w4d2-tunewall.tgz?dl=1
+## Code discussed in class
+
+[Just click right here!](https://www.dropbox.com/s/cilbnrs4fed9vpx/w4d4-rest-sinatra.tgz?dl=1)
