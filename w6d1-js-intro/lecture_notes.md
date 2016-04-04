@@ -146,13 +146,16 @@ for (var i = 0; i < arr.length; i++) {
 // 5 
 ```
 
-There's also a `for...in` construct that works fine with arrays... 
+There's also a `Array.forEach()` construct that works fine with arrays, but you have to pass a callback function:
 ```js
 var arr = [1, 2, 3, 4, 5];
 
-for (var el in arr) {
-  console.log(el);
+function displayElement(element) {
+  console.log(element);
 }
+
+arr.forEach(displayElement);
+
 // 1
 // 2
 // 3
@@ -160,7 +163,7 @@ for (var el in arr) {
 // 5 
 ```
 
-...but can be problematic when you're dealing with objects that you didn't create or objects created by functions, since they have lots of inherited properties. [This MDN link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) explains the situation pretty well.
+Now, iterating over objects can be problematic when you're dealing with objects that you didn't create or objects created by functions, since they have lots of inherited properties. [This MDN link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) explains the situation pretty well.
 
 ```js
 // This works fine:
