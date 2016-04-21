@@ -29,6 +29,22 @@ Also note that you shouldn't have display logic on your POST/PUT/PATCH/DELETE ac
         + **GET /tunes/new** -> display form to add a new tune
         + **GET /tunes/:id/edit** -> display form to edit an existing tune
 
+## Making PUT/PATCH/DELETE requests from plain HTML forms on Sinatra
+
+As of now there are no browsers that can do PUT/PATCH/DELETE requests directly from HTML forms, but there's a [Sinatra configuration workaround](http://www.sinatrarb.com/configuration.html#methodoverride---enabledisable-the-post-method-hack) that can be used to avoid adding unnecessary Javascript code to your project.
+
+First add the following line to the top of your `actions.rb` file:
+
+```ruby
+use Rack::MethodOverride
+```
+
+Then add a hidden field named `_method` to your form and put the desired HTTP method in the value:
+
+```html
+<input name="_method" type="hidden" value="delete" />
+```
+
 ## Code discussed in class
 
 [Just click right here!](https://www.dropbox.com/s/cilbnrs4fed9vpx/w4d4-rest-sinatra.tgz?dl=1)
