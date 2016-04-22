@@ -1,0 +1,9 @@
+<h2><%= @puppy.name %> (<%= @puppy.breed %>)</h2>
+
+<p>Cuteness: <%= @puppy.cuteness_level %></p>
+
+<% if @puppy.photo_url? %>
+  <p>
+    <img src="<%= @puppy.photo_url %>">
+  </p>
+<% end %>
