@@ -1,5 +1,6 @@
 Cms::Application.routes.draw do
 
+  # You can have the root of your site routed with "root"
   root "articles#index"
 
   # These routes give direct REST access to our resources

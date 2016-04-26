@@ -1,9 +1,7 @@
-class Admin::UsersController < ApplicationController
-
-  # before_action :check_admin
+class Admin::UsersController < Admin::ApplicationController
 
   def index
-    render text: 'An admin is you'
+    # Renders /views/admin/index.html.erb
   end
 
   def show
