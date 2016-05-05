@@ -20,7 +20,7 @@ class Bartender
   end
 
   def practice
-    @skill_level += 1 if @skill_level <= 10
+    @skill_level += 1 if @skill_level < 10
   end
 
   def skillz
@@ -35,7 +35,6 @@ class Bartender
       'Awesome!'
     end
   end
-
 end
 
 
