@@ -25,7 +25,7 @@ describe Sandwich do
 
   describe '#cost' do
     it 'should cost $5 for wheat, turkey, and toasted' do
-      expect(@sandwich.cost).to eql(5.0)
+      expect(@sandwich.cost).to eql(5)
     end
 
     it 'should cost $4.50 for white, turkey, and toasted' do
