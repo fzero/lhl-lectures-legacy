@@ -1,6 +1,8 @@
 # W4D5 - Advanced Sinatra, JSON and AJAX
 
-Following on yesterday's lecture, we've discussed a few advanced aspects of Sinatra, like the `before`/`after` blocks and _jumped ahead in time to week 6!_ Why? To discuss JSON (**J**ava**S**cript **O**bject **N**otation) and AJAX (**A**synchronous **J**avascript **A**nd **X**ML), of course!
+[Click here to download the code discussed in class!](https://www.dropbox.com/s/fpvcbnsk1ugc8d9/w4d5-advanced-sinatra-ajax.tgz?dl=1)
+
+Following up on yesterday's lecture, we've discussed a few advanced aspects of Sinatra and proceeded to _jump ahead in time to week 6!_ Why? To discuss JSON (**J**ava**S**cript **O**bject **N**otation) and AJAX (**A**synchronous **J**avascript **A**nd **X**ML), of course!
 
 ## Sinatra `before` and `after`
 
