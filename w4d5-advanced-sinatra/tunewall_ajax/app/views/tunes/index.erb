@@ -1,0 +1,10 @@
+<h1><%= @user.first_name %>'s tunes</h1>
+
+<% @user.tunes.each do |tune| %>
+  <h2>
+    <a href="/tunes/<%= tune.id %>">
+      <%= tune.artist %> - <%= tune.title %>
+    </a>
+  </h2>
+  <p><%= tune.comments %></p>
+<% end %>

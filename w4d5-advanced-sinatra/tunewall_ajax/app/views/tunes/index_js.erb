@@ -1,0 +1,28 @@
+<h1><%= @user.first_name %>'s tunes</h1>
+
+<div id="container"></div>
+
+<a href="#" id="go_get_it">Get my tunes</a>
+
+<script>
+  $('#go_get_it').on('click', function(ev){
+    ev.preventDefault();
+
+    $.get('/tunes').
+    done(function(result){
+      var data = JSON.parse(result);
+      var $container = $('#container');
+      for (var i = 0; i < data.length; i++ ) {
+        var contents = "<p><strong>Artist:</strong> " + data[i].artist + "</p>"
+        contents += "<p><strong>Title:</strong> " + data[i].title + "</p>"
+        contents += "<p><strong>Comments:</strong> " + data[i].comments + "</p>"
+        contents += "<hr/>"
+        $container.append(contents);
+      }
+
+    }).
+    fail(function(error){
+      console.error(error)
+    });
+  });
+</script>

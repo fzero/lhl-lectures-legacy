@@ -1,0 +1,15 @@
+<h1>Tune: <%= @tune.artist %> - <%= @tune.title %></h1>
+
+<p>
+  <a href="<%= @tune.url %>">Click here to listen!</a>
+</p>
+
+<h2>Comments</h2>
+<p><%= @tune.comments %></p>
+
+<h2>Actions</h2>
+
+<p>
+  <a href="/tunes/<%= @tune.id %>/edit">Edit</a>
+  <a href="/tunes/<%= @tune.id %>/delete">Delete</a>
+</p>

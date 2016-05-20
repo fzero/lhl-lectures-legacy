@@ -1,0 +1,28 @@
+<h1>Edit tune <%= @tune.artist %> - <%= @tune.title %></h1>
+
+<form action="/tunes/<%= @tune.id %>/update" method="POST" id="tune_form">
+  <%= erb :'tunes/_form', locals: {tune: @tune} %>
+</form>
+
+<!--
+  Unfortunately you can't make a straight PUT request using HTML
+  at this point in time. You can either create an alternate route
+  like POST /tunes/:id/update or use Javascript to intercept the
+  form submit action and PUT the form yourself.
+-->
+<script>
+  // Here be Javascript!
+  // We're intercepting the form.submit action here
+  $('#tune_form').on('submit', function(ev){
+    // This prevents the form from being submitted, which is de default action
+    ev.preventDefault();
+    // Now we get the form data and put it on a variable
+    var formdata = $(this).serialize();
+    // Then we sent a PUT request containing the form data
+    $.ajax('/tunes', {method: 'PUT', data: formdata})
+    .done(function(result){
+      // When the request is done we redirect the user back to the tunes page
+      window.location.href = "/tunes";
+    });
+  })
+</script>
