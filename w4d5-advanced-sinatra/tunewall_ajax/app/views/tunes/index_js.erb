@@ -11,15 +11,19 @@
   // Attach click action to the element with id="go_get_it"
   $('#go_get_it').on('click', function(ev){
 
-    // Prevent default action of clicking on the link
+    // Prevents default action of clicking on the link
     ev.preventDefault();
 
     // Get JSON data from /tunes - this will trigger the request.xhr? method
-    // on sinatra
+    // on sinatra.
+    // Note we're using jQuery promises here: the done() function
+    // will be called if everything goes well. If any errors happen, fail() is
+    // called instead. Docs: http://api.jquery.com/jQuery.get
     $.get('/tunes').
     done(function(result){
       var data = JSON.parse(result);
       var $container = $('#container');
+
       for (var i = 0; i < data.length; i++) {
         var contents = "<p><strong>Artist:</strong> " + data[i].artist + "</p>";
         contents += "<p><strong>Title:</strong> " + data[i].title + "</p>";
@@ -29,7 +33,7 @@
       }
     }).
     fail(function(error){
-      console.error(error)
+      console.error(error);
     });
   });
 </script>
