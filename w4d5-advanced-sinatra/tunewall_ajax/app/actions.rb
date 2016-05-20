@@ -21,32 +21,10 @@ helpers do
 end
 
 
-before do
-  # Stuff that happens before ALL actions go here.
-  # If you want to be specific, make a block with a route
-  # matcher. This is pretty good place control sessions.
-  #
-  # Example:
-  #
-  # before '/protected/*'
-  #   check_login
-  # end
-end
-
-
-after do
-  # Same idea as `before`, but happening AFTER actions.
-  # Potentially less useful, but hey, it's there.
-end
-
-
 # Home
 get '/' do
-  if @user
-    redirect '/tunes'
-  else
-    redirect '/login'
-  end
+  check_user
+  redirect '/tunes'
 end
 
 
@@ -86,13 +64,19 @@ end
 # R in CRUD
 get '/tunes' do
   check_user
+  # request.xhr? returns true when the request comes from Javascript...
   if request.xhr?
+    # ...and in that case we return JSON
     @user.tunes.to_json
   else
+    # If it's regular request, proceed as usual and render HTML
     erb :'tunes/index'
   end
 end
 
+
+# Same as tunes, but using Javascript/AJAX to fetch JSON data from
+# /tunes - see /app/views/tunes/index_js.erb
 get '/tunes_js' do
   check_user
   erb :'tunes/index_js'
@@ -197,9 +181,24 @@ get '/tunes/:id/delete' do
 end
 
 
+# Use this endpoint to test POSTing data from Javascript.
+# Every key in a JSON object will show up as a param key.
+#
+# JS -> {chocolate: 'Lindt salt caramel'}
+# Sinatra -> params[:chocolate] = 'Lindt salt caramel'
+#
+# If you want to send more complex data (like an array containing objects),
+# it might be better to use JSON.stringify on the client and parse it on
+# the server with JSON.parse. Example JS client code:
+#
+# var mydata = [{name: 'Fabio', city: 'Toronto'}, {name: 'Don', city: 'Vancouver'}];
+# var postdata = {data: JSON.stringify(mydata)};
+# $.post('/jsontest', postdata);
+#
+# Open the terminal where your server is running to see the results!
 post '/jsontest' do
   puts "---------------------------------------"
   puts params
-  puts JSON.parse(params[:data])
+  puts JSON.parse(params[:data]) if params[:data]
   puts "---------------------------------------"
 end

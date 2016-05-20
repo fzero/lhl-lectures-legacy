@@ -1,25 +1,32 @@
 <h1><%= @user.first_name %>'s tunes</h1>
 
+<!-- Data will be displayed inside this div -->
 <div id="container"></div>
 
+<!-- This will trigger the Javascript code below -->
 <a href="#" id="go_get_it">Get my tunes</a>
 
+
 <script>
+  // Attach click action to the element with id="go_get_it"
   $('#go_get_it').on('click', function(ev){
+
+    // Prevent default action of clicking on the link
     ev.preventDefault();
 
+    // Get JSON data from /tunes - this will trigger the request.xhr? method
+    // on sinatra
     $.get('/tunes').
     done(function(result){
       var data = JSON.parse(result);
       var $container = $('#container');
-      for (var i = 0; i < data.length; i++ ) {
-        var contents = "<p><strong>Artist:</strong> " + data[i].artist + "</p>"
-        contents += "<p><strong>Title:</strong> " + data[i].title + "</p>"
-        contents += "<p><strong>Comments:</strong> " + data[i].comments + "</p>"
-        contents += "<hr/>"
+      for (var i = 0; i < data.length; i++) {
+        var contents = "<p><strong>Artist:</strong> " + data[i].artist + "</p>";
+        contents += "<p><strong>Title:</strong> " + data[i].title + "</p>";
+        contents += "<p><strong>Comments:</strong> " + data[i].comments + "</p>";
+        contents += "<hr/>";
         $container.append(contents);
       }
-
     }).
     fail(function(error){
       console.error(error)
