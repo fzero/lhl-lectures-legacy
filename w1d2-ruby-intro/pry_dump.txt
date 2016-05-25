@@ -1,0 +1,167 @@
+[1] pry(main)> balloons = "99 red balloons"
+=> "99 red balloons"
+[2] pry(main)> balloons.to_i
+=> 99
+[3] pry(main)> "anything else".to_i
+=> 0
+[4] pry(main)> is_admin = 0
+=> 0
+[5] pry(main)> if is_admin
+[5] pry(main)*   puts "It's an admin!!!!!"
+[5] pry(main)* else
+[5] pry(main)*   puts "Get outta here!"
+[5] pry(main)* end
+It's an admin!!!!!
+=> nil
+[6] pry(main)> if ''; puts "true"; end
+(pry):10: warning: string literal in condition
+true
+=> nil
+[7] pry(main)> if nil; puts "true"; end
+=> nil
+[8] pry(main)> if false; puts "true"; end
+=> nil
+[9] pry(main)> if 0; puts "true"; end
+true
+=> nil
+[10] pry(main)> if 0 == 0; puts "yay"; end
+yay
+=> nil
+[11] pry(main)> if (0 == 0) == true; puts "yay"; end
+yay
+=> nil
+[12] pry(main)> if (0 == 0); puts "yay"; end
+yay
+=> nil
+[13] pry(main)> "3" == 3
+=> false
+[14] pry(main)> var
+NameError: undefined local variable or method `var' for main:Object
+from (pry):18:in `__pry__'
+[15] pry(main)> message = "Good morning everyone!"
+=> "Good morning everyone!"
+[16] pry(main)> arr = [1, 10, 'Hello', message, [3,4,5], [5,6,7,[10,11,20]]]
+=> [1, 10, "Hello", "Good morning everyone!", [3, 4, 5], [5, 6, 7, [10, 11, 20]]]
+[17] pry(main)> arr.size
+=> 6
+[18] pry(main)> "This is the message: #{message}"
+=> "This is the message: Good morning everyone!"
+[19] pry(main)> message
+=> "Good morning everyone!"
+[20] pry(main)> puts message
+Good morning everyone!
+=> nil
+[21] pry(main)> puts "#{message}"
+Good morning everyone!
+=> nil
+[22] pry(main)> puts "2+2 is #{2+2}"
+2+2 is 4
+=> nil
+[23] pry(main)> Date.new
+NameError: uninitialized constant Date
+Did you mean?  Data
+from (pry):27:in `__pry__'
+[24] pry(main)> Time.new
+=> 2016-05-25 10:02:10 -0400
+[25] pry(main)> puts "The current time is #{Time.new}"
+The current time is 2016-05-25 10:02:57 -0400
+=> nil
+[26] pry(main)> Time.now
+=> 2016-05-25 10:03:12 -0400
+[27] pry(main)> Time.new('2011-12-10')
+=> 2011-01-01 00:00:00 -0500
+[28] pry(main)> arr
+=> [1, 10, "Hello", "Good morning everyone!", [3, 4, 5], [5, 6, 7, [10, 11, 20]]]
+[29] pry(main)> arr[0]
+=> 1
+[30] pry(main)> arr[2]
+=> "Hello"
+[31] pry(main)> arr[4]
+=> [3, 4, 5]
+[32] pry(main)> arr[4][1]
+=> 4
+[33] pry(main)> arr[5]
+=> [5, 6, 7, [10, 11, 20]]
+[34] pry(main)> arr[5][3]
+=> [10, 11, 20]
+[35] pry(main)> arr[5][3][-1]
+=> 20
+[36] pry(main)> index = 3
+=> 3
+[37] pry(main)> arr[index]
+=> "Good morning everyone!"
+[38] pry(main)> index = 5
+=> 5
+[39] pry(main)> arr[index]
+=> [5, 6, 7, [10, 11, 20]]
+[40] pry(main)> arr[1000000000000]
+=> nil
+[41] pry(main)> arr['banana']
+TypeError: no implicit conversion of String into Integer
+from (pry):45:in `[]'
+[42] pry(main)> arr
+=> [1, 10, "Hello", "Good morning everyone!", [3, 4, 5], [5, 6, 7, [10, 11, 20]]]
+[43] pry(main)> arr[index]
+=> [5, 6, 7, [10, 11, 20]]
+[44] pry(main)> arr[index] = "Changed!"
+=> "Changed!"
+[45] pry(main)> arr
+=> [1, 10, "Hello", "Good morning everyone!", [3, 4, 5], "Changed!"]
+[46] pry(main)> arr[0..2]
+=> [1, 10, "Hello"]
+[47] pry(main)> arr[0...2]
+=> [1, 10]
+[48] pry(main)> hsh = {:name => "Fabio", :telephone => '555-1234'}
+=> {:name=>"Fabio", :telephone=>"555-1234"}
+[49] pry(main)> hsh2 = {name: "Fabio", telephone: '555-1234'}
+=> {:name=>"Fabio", :telephone=>"555-1234"}
+[50] pry(main)> hsh == hsh2
+=> true
+[51] pry(main)> phones = [hsh, hsh2]
+=> [{:name=>"Fabio", :telephone=>"555-1234"}, {:name=>"Fabio", :telephone=>"555-1234"}]
+[52] pry(main)> phones[0]
+=> {:name=>"Fabio", :telephone=>"555-1234"}
+[53] pry(main)> phones[1]
+=> {:name=>"Fabio", :telephone=>"555-1234"}
+[54] pry(main)> phones[1] = {name: 'John', telephone: '0118999881993'}
+=> {:name=>"John", :telephone=>"0118999881993"}
+[55] pry(main)> phones
+=> [{:name=>"Fabio", :telephone=>"555-1234"}, {:name=>"John", :telephone=>"0118999881993"}]
+[56] pry(main)> hsh
+=> {:name=>"Fabio", :telephone=>"555-1234"}
+[57] pry(main)> hsh[:name]
+=> "Fabio"
+[58] pry(main)> hsh[:telephone]
+=> "555-1234"
+[59] pry(main)> phones[0][:name]
+=> "Fabio"
+[60] pry(main)> person = {name: 'Steve', telephones: {
+[60] pry(main)*     home: '555-1234',
+[60] pry(main)*     work: '123-9999',
+[60] pry(main)*     fax: 'really?'
+[60] pry(main)*   }
+[60] pry(main)* }
+=> {:name=>"Steve", :telephones=>{:home=>"555-1234", :work=>"123-9999", :fax=>"really?"}}
+[61] pry(main)> person[:name]
+=> "Steve"
+[62] pry(main)> person[:telephones]
+=> {:home=>"555-1234", :work=>"123-9999", :fax=>"really?"}
+[63] pry(main)> person[:telephones][:home]
+=> "555-1234"
+[64] pry(main)> person2 = {'name' => 'Graham'}
+=> {"name"=>"Graham"}
+[65] pry(main)> person2[:name]
+=> nil
+[66] pry(main)> person2['name']
+[67] pry(main)> madness = { {a:1} => "What is this?", [1,2,3] => "I can't even", 10000 => "Maniacs"}
+[67] pry(main)> madness = { {a:1} => "What is this?", [1,2,3] => "I can't even", 10000 => "Maniacs"}
+=> {{:a=>1}=>"What is this?", [1, 2, 3]=>"I can't even", 10000=>"Maniacs"}
+[68] pry(main)> madness[{a:1}]
+=> "What is this?"
+[69] pry(main)> phones
+=> [{:name=>"Fabio", :telephone=>"555-1234"}, {:name=>"John", :telephone=>"0118999881993"}]
+[70] pry(main)> phones[0]
+=> {:name=>"Fabio", :telephone=>"555-1234"}
+[71] pry(main)> phones[0][:telephone]
+=> "555-1234"
+[72] pry(main)>
