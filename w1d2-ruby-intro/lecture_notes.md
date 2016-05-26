@@ -20,6 +20,9 @@
             + Interpreting special characters, like `\n` (new line). See `developers.rb`.
     - Symbols
         + Used to name things. **They are not Strings**, and are generally used as keys in Hashes.
+        + When used alone, they're defined with a leading `:`, like this: `:symbol`
+        + When used as Hash keys, they can be written with a _trailing_ colon to make reading easier: `{hello: 'there'}`
+        + The example above is **exactly the same** as `{:hello => 'there'}`
     - Fixnum/Float - numbers
         + An integer operation **won't be converted automatically to Float**:
             * `5 / 2` => `2`
