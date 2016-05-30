@@ -107,7 +107,7 @@
             * Not everything works the same way everywhere
             * Two different versions in use (ES5/ES6)
             * The ecosystem changes so fast it's hard to keep up
-            * It's a somewhat idiosyncratic language...
+            * It's a somewhat idiosyncratic language
           </section>
 
           <section>
@@ -273,27 +273,38 @@
           </section>
 
           <section data-markdown>
-            ## Closures!
+            ## Loops and iterators
+            ES5 Javascript doesn't have proper iterators (like Ruby's `.each`), so you have to use C-like `for` loops to iterate over Arrays:
+            ```js
+            var arr = [1, 2, 3, 4, 5];
 
-            We already know we can return functions as values, but the cool thing is they _always
-            keep everything inside their scope_ (local variables and such) and pass them along.
-            This function+data package is called a _closure_:
+            for (var i = 0; i < arr.length; i++) {
+              console.log(arr[i]);
+            }
+            // 1
+            // 2
+            // 3
+            // 4
+            // 5
+            ```
+          </section>
 
-            ```javascript
-            function multiplier(factor) {
-              return function(number) {
-                return number * factor;
-              };
+          <section data-markdown>
+            There's also a `Array.forEach()` construct that works fine with arrays, but you have to pass a callback function:
+            ```js
+            var arr = [1, 2, 3, 4, 5];
+
+            function displayElement(element) {
+              console.log(element);
             }
 
-            // The function being returned contains factor = 2
-            var twice = multiplier(2);
+            arr.forEach(displayElement);
 
-            twice(5);
-            //=> 10
-
-            multiplier(5)(3); // BTW This also works
-            //=> 15
+            // 1
+            // 2
+            // 3
+            // 4
+            // 5
             ```
           </section>
 
