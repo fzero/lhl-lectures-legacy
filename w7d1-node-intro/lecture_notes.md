@@ -34,6 +34,22 @@ Since there's no browser, there's no `window`, `document` or DOM. `console` prin
 
 You can now read and write to files using the [`fs` (file system) module](https://nodejs.org/api/fs.html), serve HTTP requests and so on. It's a server after all.
 
+Instead of using `window` as the top object, Node uses `global`. Whenever things get assigned with `var` outside a function, they become keys in the `global` object (yes, this happens with `window` in the browser): 
+```js
+var myVar = "This is my var!"
+global.myVar
+//=> "This is my var!"
+```
+
+This **doesn't** happen when using `let`. That's ES6 bringing proper scoping to the party!
+```js
+let myVar = "This is still my var!"
+global.myVar
+//=> undefined
+myVar
+//=> 'This is still my var!'
+```
+
 ## Working with modules
 
 The only way to load Javascript on the browser is by using a `<script>` tag. There's no such thing on the server side, and it isn't practical to put everything on a single file either, so Node introduces modules.
