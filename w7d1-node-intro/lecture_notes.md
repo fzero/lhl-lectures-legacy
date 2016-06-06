@@ -68,7 +68,7 @@ hello()
 
 ### Libraries installed with `npm install` are modules too
 
-When you run `npm install` on a project, it will look at `package.json` and install all dependencies on the `node_modules` folder. From then on, you can load them with a regular `require` (no need to include the full path).
+When you run `npm install` in a project, it will look at `package.json` and install all dependencies in the `node_modules` folder. From then on you can load them with a regular `require` (no need to include the full path).
 ```sh
 # Installs the request library (https://github.com/request/request)
 # This will update the package.json file
@@ -125,4 +125,3 @@ $ express --help
     * ORM for MongoDB (NoSQL)
 * [Waterline.js](http://waterlinejs.org/)
     * Multi-adapter ORM supporting both SQL and NoSQL databases at the same time. Used by Sails and Strapi.
-
