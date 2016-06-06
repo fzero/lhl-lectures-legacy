@@ -13,9 +13,9 @@
     + Using modules
         * Example: using `request` (https://github.com/request/request)
     + Creating your own modules
+        * `exports` on one side, `require`
 - Cool ES6 features in node
     + `const`, `let`, proper string templates, fat arrows
 - Quick `Express` demo
     + It's like Sinatra!
     + It's javascript, so everything needs a callback
-
