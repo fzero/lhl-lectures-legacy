@@ -3,6 +3,12 @@ module Taggable
   def formatted_tags
     return 'No tags' if @tags.nil? || @tags.empty?
     @tags.join(', ')
+    # Another way to write it:
+    # if @tags.nil? || @tags.empty?
+    #   'No tags'
+    # else
+    #   @tags.join(', ')
+    # end
   end
 
 end
@@ -41,6 +47,10 @@ end
 class Restaurant
   include Taggable
 
+  class RestaurantError < StandardError
+  end
+
+  attr_reader :reviews
   attr_accessor :name, :style, :price_range, :tags
   attr_writer :kid_friendly
 
@@ -51,11 +61,26 @@ class Restaurant
     @price_range = price_range
     @kid_friendly = kid_friendly
     @tags = tags
+    @reviews = []
   end
 
   def kid_friendly?
     @kid_friendly
   end
+
+  def add_review(review)
+    if !review.is_a?(Review)
+      raise RestaurantError, "Review should be an instance of Review"
+    end
+    @reviews << review
+  end
+
+  def average_rating
+    return nil if @reviews.empty?
+    scores = @reviews.map {|review| review.rating}
+    (scores.inject(:+) / scores.size).to_f
+  end
+
 end
 
 
@@ -103,17 +128,28 @@ class Bar
 end
 
 
-class SportsBar < Bar
-  attr_reader :sportness
+# class SportsBar < Bar
+#   attr_reader :sportness
 
-  def initialize(name, style="sports", sportness=5)
-    super(name, style)
-    @sportness = sportness
+#   def initialize(name, style="sports", sportness=5)
+#     super(name, style)
+#     @sportness = sportness
+#   end
+
+#   def staff
+#     "OUR STAFF IS AWESOME AND CRUSHING IT! #{super}"
+#   end
+# end
+
+class Review
+
+  attr_reader :rating, :comment
+
+  def initialize(rating, comment)
+    @rating = rating
+    @comment = comment
   end
 
-  def staff
-    "OUR STAFF IS AWESOME AND CRUSHING IT! #{super}"
-  end
 end
 
 
