@@ -1,5 +1,6 @@
 require_relative "db"
 
+# Schema reference:
 # CREATE TABLE countries (
 #   id          serial NOT NULL PRIMARY KEY,
 #   name        varchar(40) NOT NULL,
@@ -11,10 +12,9 @@ require_relative "db"
 class Country
   # This is a Model class.
   # A Model represent the table, while each instance of a model represents a row.
-  # instance method.
 
   attr_accessor :name, :population, :capital, :area  # Accessors for all columns
-  attr_reader :id  # defined by the database, so it should be read-only
+  attr_reader :id  # `id` is defined by the database, so it should be read-only
 
   # I'm using a hash to initialize objects, so I don't need to remember the
   # order of parameters. This pattern is also used by ActiveRecord.
@@ -36,7 +36,7 @@ class Country
 
   # A quick way to find out if a record is saved is by checking if it has an id
   def saved?
-    !!@id
+    !!@id  # Dirty trick to cast to Boolean
   end
 
   def save
@@ -45,16 +45,19 @@ class Country
     # HINT: Right now we're bailing if the record is already saved.
     #       Updating = changing data that's already saved. ;-)
     return false if saved?
-    @id = DB.exec_params(
+    result = DB.exec_params(
       "INSERT INTO countries (name, population, capital, area) " +
       "VALUES ($1, $2, $3, $4) RETURNING id",
       [@name, @population, @capital, @area]
     )
+    # The result comes as a hash inside and array: [{'id' => '4'}]
+    # We need an integer, so we must deal with it.
+    @id = result.first['id'].to_i
   end
 
   def delete
     return false unless saved?
-    DB.exec_params("DELETE FROM countries WHERE id=$1 RETURNING id", [@id])
+    DB.exec_params("DELETE FROM countries WHERE id=$1;", [@id])
   end
 
 
@@ -82,9 +85,10 @@ class Country
     end
 
     def create(data)
-      c = Country.new(data)
-      c.save
+      new_country = Country.new(data)
+      return new_country if new_country.save
     end
+
 
     private
 
@@ -101,6 +105,5 @@ class Country
     end
 
   end
-
 
 end
