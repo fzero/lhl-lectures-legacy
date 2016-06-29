@@ -1,5 +1,8 @@
 # AJAX, APIs and other useful things
 
+## Code discussed in class
+[Click here to get it!](https://www.dropbox.com/s/rdem7fn2itdr1ax/w6d3-ajax-apis.tgz?dl=1)
+
 ## Topics
 
 - AJAX recap
@@ -8,10 +11,13 @@
         * callbacks
         * promises
 - Using APIs
-    + Super simple example using local data
     + Consuming external APIs using Javascript
+        * LCBO API: https://lcboapi.com/docs/v1
 - Using client-side templates to simplify your life
-    + Handlebars!
+    + Handlebars: http://handlebarsjs.com
+
+There are a few things to keep in mind when using APIs:
+
 - Security concerns (and how they can get in the way)
     + same-origin policy
         * https://en.wikipedia.org/wiki/Same-origin_policy
@@ -26,6 +32,4 @@
         + Some API's don't care who accesses what, so they just set the HTTP header: Access-Control-Allow-Origin: *
         + http://client.cors-api.appspot.com/client
         + https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-        + https://lcboapi.com/docs/v1#jsonp
-        + https://developers.google.com/maps/documentation/javascript/
 

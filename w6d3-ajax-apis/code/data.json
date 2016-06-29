@@ -1,0 +1,24 @@
+{
+  "addresses": [
+    {
+      "name": "Fabio",
+      "email": "fabio@example.com"
+    },
+    {
+      "name": "Sergey Brin",
+      "email": "sergey@example.com"
+    },
+    {
+      "name": "Steven Spielberg",
+      "email": "spielberg@example.com"
+    },
+    {
+      "name": "Taylor Swift",
+      "email": "shakeitoff@example.com"
+    },
+    {
+      "name": "Milla Jovovich",
+      "email": "milla@example.com"
+    }
+  ]
+}

@@ -14,12 +14,46 @@
     <div class="container">
 
       <div class="jumbotron">
-        <h1>Hello world!</h1>
-        <p>AJAX and stuff!</p>
+        <h2>LCBO API fun with AJAX!</h2>
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <form id="product-search" class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" id="product-query" placeholder="Search LCBO products">
+              </div>
+              <button type="submit" class="btn btn-primary">Get products</button>
+            </form>
+          </div>
+
+          <div class="col-md-6">
+            <form id="store-search" class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" id="store-query" placeholder="Search LCBO stores">
+              </div>
+              <button type="submit" class="btn btn-primary">Get stores</button>
+            </form>
+          </div>
+
+        </div>
+
       </div>
 
+      <!-- Handlebar templates will be displayed here -->
+      <div id="data-container"></div>
+
+    </div>
+
+    <!-- Javascript libraries -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/handlebars/handlebars.min.js"></script>
+
+    <!-- Stores templates -->
+    <script id="stores-template" type="text/x-handlebars-template">
       <div class="page-header">
-        <h1>Table template</h1>
+        <h1>LCBO stores</h1>
       </div>
 
       <div class="row">
@@ -28,46 +62,69 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Telephone</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              {{#each result}}
+                <tr>
+                  <td>{{name}}</td>
+                  <td>{{address_line_1}} {{address_line_2}}</td>
+                  <td>{{telephone}}</td>
+                </tr>
+              {{/each}}
             </tbody>
           </table>
 
         </div>
       </div>
-
-    </div>
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/handlebars/handlebars.min.js"></script>
-    <!-- Handlebar templates -->
-    <script id="example-template" type="text/x-handlebars-template">
     </script>
-    <!-- Our own code -->
+
+    <!-- Products template -->
+    <script id="products-template" type="text/x-handlebars-template">
+      <div class="page-header">
+        <h1>LCBO products</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Origin</th>
+                <th>Categories</th>
+                <th>Style</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each result}}
+                <tr>
+                  <td><img class="thumb" src="{{image_thumb_url}}"/></td>
+                  <td>{{name}}</td>
+                  <td>{{origin}}</td>
+                  <td>
+                    {{primary_category}}<br/>
+                    {{secondary_category}}<br/>
+                    {{tertiary_category}}
+                  </td>
+                  <td>{{style}}</td>
+                  <td>{{price}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </script>
+
+    <!-- Our own application code -->
     <script src="main.js"></script>
   </body>
 </html>
