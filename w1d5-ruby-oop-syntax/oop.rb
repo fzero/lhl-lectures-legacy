@@ -106,6 +106,7 @@ class Book
     total / @reviews.size
   end
 
+
   # Create a class method by prefixing the method name with `self.`
   # def self.books_created
   #   @@books_created
@@ -119,6 +120,7 @@ class Book
     end
 
 
+    # Class method to compare two book instances
     def compare(book1, book2)
       (
         book1.title == book2.title &&
@@ -130,6 +132,21 @@ class Book
       )
     end
 
+  end
+
+
+  # We're back to instance methods now. Speaking about comparing books, we
+  # can also redefine == (which yes, it's a method!) so we can compare books
+  # in a more natural way
+  def ==(another_book)
+    (
+      @title == another_book.title &&
+      @author == another_book.author &&
+      @genre == another_book.genre &&
+      @year == another_book.year &&
+      @isbn == another_book.isbn &&
+      @pages == another_book.pages
+    )
   end
 
 
