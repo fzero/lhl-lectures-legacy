@@ -18,6 +18,7 @@ class Bartender
   include Taggable
 
   attr_reader :name, :skill_level
+  attr_accessor :tags
 
   def initialize(name, skill_level=5, tags=[])
     @name = name
@@ -30,7 +31,7 @@ class Bartender
   end
 
   def skillz
-    case skill_level
+    case @skill_level
     when (0..2)
       'Horrible'
     when (3..5)

@@ -1,4 +1,4 @@
-require './bars_restaurants.rb'
+require_relative 'bars_restaurants.rb'
 
 describe Bartender do
   before :each do
