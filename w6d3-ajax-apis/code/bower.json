@@ -1,0 +1,22 @@
+{
+  "name": "w6d3",
+  "authors": [
+    "Fabio Neves <fabio.fzero@gmail.com>"
+  ],
+  "description": "LighthouseLabs - Week 6 Day 3",
+  "main": "index.html",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "handlebars": "^4.0.5"
+  }
+}

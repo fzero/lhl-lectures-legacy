@@ -31,7 +31,7 @@
   // Using Handlebars templates:
   // The first line gets the HTML contents of the template...
   var stores_source = $("#stores-template").html()
-  // ...while the second one returns a function that takes in
+  // ...while the second returns a function that takes in
   // a JS object and fills in the template with the given data.
   var stores_template = Handlebars.compile(stores_source)
 
