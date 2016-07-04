@@ -82,6 +82,9 @@
       // You could use String.prototype.replace() here to fix it.
       // Another one: some products don't have images. We can test
       // r.image_thumb_url for null/undefined and add a placeholder.
+      // Hint: you can use placehold.it to create a suitable
+      // image on the fly, like this:
+      // http://placehold.it/80/eeeeee/333333?text=N/A
       return r
     })
     return data
