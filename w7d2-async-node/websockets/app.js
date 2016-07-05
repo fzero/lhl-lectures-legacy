@@ -44,10 +44,11 @@ io.on('connection', function(client) {
     client.emit('special', {color: '#ff0000', message: 'You are connected!'});
   });
 
-  // Handle messages
+  // Chat message event!
   client.on('messages', function(data) {
+    // First send the message back to whoever wrote the message...
     client.emit('broad', data);
-    // Send data back to all connected clients
+    // ...then send the message to all connected clients.
     client.broadcast.emit('broad', data);
   });
 });
