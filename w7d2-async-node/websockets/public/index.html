@@ -34,9 +34,13 @@
       console.log(data);
     });
 
+    socket.on('special', function(data){
+      $('#future').innerHTML += `<p style="color:${data.color}">${data.message}</p>`;
+    });
+
     // Handle broadcasted messages: write them to the document
     socket.on('broad', function(data) {
-      $('#future').innerHTML += '<p>' + data + '</p>';
+      $('#future').innerHTML += `<p>${data}</p>`;
     });
 
     $('#form').addEventListener('submit', function(e){

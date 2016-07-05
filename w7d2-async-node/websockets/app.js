@@ -41,7 +41,7 @@ io.on('connection', function(client) {
   // Ping the client on connect
   client.on('join', function(data) {
     console.log(data);
-    client.emit('messages', 'Hello from server!');
+    client.emit('special', {color: '#ff0000', message: 'You are connected!'});
   });
 
   // Handle messages
