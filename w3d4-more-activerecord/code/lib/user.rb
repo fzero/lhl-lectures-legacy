@@ -4,9 +4,14 @@ class User < ActiveRecord::Base
   validate :valid_email
 
   has_many :posts
+  # def posts
+  #   Post.where(user_id: id)
+  # end
+
   has_many :comments, dependent: :destroy
 
   after_create :send_confirmation_email
+  after_save :run_this_after_i_save_something
   before_destroy :check_if_admin
 
 
@@ -15,8 +20,13 @@ class User < ActiveRecord::Base
   end
 
 
+  def run_this_after_i_save_something
+    puts "------- YOU ARE SAVED!"
+  end
+
+
   def send_confirmation_email
-    puts "Sending confirmation email to #{name} (#{email})."
+    puts "------- Sending confirmation email to #{name} (#{email})."
   end
 
 
@@ -24,6 +34,7 @@ class User < ActiveRecord::Base
   def check_if_admin
     if admin?
       errors.add(:admin, "You can't delete admin users")
+      throw :abort # New in ActiveRecord 5
       return false
     end
   end
