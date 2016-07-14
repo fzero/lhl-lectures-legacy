@@ -4,7 +4,7 @@
 
 * Model: Database, validations and so on. Usually a ORM like ActiveRecord.
 * View: Displays data to the user.
-* Controller: Receives user requestes and prepares the views. The _glue_ between Model and View.
+* Controller: Receives user requests and prepares the views. The _glue_ between Model and View.
 
 ## REST
 
@@ -44,6 +44,23 @@ Then add a hidden field named `_method` to your form and put the desired HTTP me
 ```html
 <input name="_method" type="hidden" value="delete" />
 ```
+
+## Cookie persistence
+
+There were questions in class about creating session variables that persist for a given time instead of being zapped every time the browser is closed. The Sinatra docs deal with _cookies_ with specific durations, but I couldn't find anything similar for sessions.
+
+To create a cookie with expiry date you'll need to use `response.set_cookie` with an `expires` parameter containing a timestamp.
+
+The timestamp can be created using `Time.now` (which returns the number of seconds since the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)) plus the number of seconds until the cookie expiration date. Here's an example:
+```ruby
+response.set_cookie('cookie_name',
+                    {:value => 'cookie value',
+                     :expires => Time.now + (60 * 60 * 24 * 30)})
+```
+
+That's 60 seconds (= 1 minute) * 60 minutes (= 1 hour) * 24 hours (= 1 day) * 30 days (~ 1 month).
+
+**Sadly this doesn't work with sessions**, but there are probably some Ruby gems out there that help getting around this limitation.
 
 ## Code discussed in class
 
