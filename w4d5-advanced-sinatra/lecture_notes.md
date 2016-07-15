@@ -1,6 +1,9 @@
 # W4D5 - Advanced Sinatra, JSON and AJAX
 
-[Click here to download the code discussed in class!](https://www.dropbox.com/s/fpvcbnsk1ugc8d9/w4d5-advanced-sinatra-ajax.tgz?dl=1)
+[Click here to download the code discussed in class!](https://www.dropbox.com/s/fpvcbnsk1ugc8d9/w4d5-advanced-sinatra-ajax.tgz?dl=1) It contains two folders:
+
+* `tunewall_ajax` - The Tunewall app, including a barebones AJAX view (look for `index_js.erb`)
+* `tunewall_handlebars` - Same idea, but using [Handlebars](http://handlebarsjs.com/) to render data
 
 Following up on yesterday's lecture, we've discussed a few advanced aspects of Sinatra and proceeded to _jump ahead in time to week 6!_ Why? To discuss JSON (**J**ava**S**cript **O**bject **N**otation) and AJAX (**A**synchronous **J**avascript **A**nd **X**ML), of course!
 
@@ -107,3 +110,7 @@ $.post('/jsontest', mydata, function(result){
   console.log(result);
 }, 'json');
 ```
+
+## Handlebars
+
+To top it off, we've talked about the [Handlebars](http://handlebarsjs.com/) template engine, which makes it easier to render JSON data into HTML. The [documentation](http://handlebarsjs.com/) is extensive and straightforward. Be sure to check out `tunewall_handlebars/views/tunes/index_js.erb` in the code discussed in class for an example on how to use it along with an AJAX request.
