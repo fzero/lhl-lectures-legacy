@@ -1,0 +1,52 @@
+<h1><%= @user.first_name %>'s tunes</h1>
+
+<!-- Data will be displayed inside this div -->
+<div id="container"></div>
+
+<!-- This will trigger the Javascript code below -->
+<a href="#" id="go_get_it">Get my tunes</a>
+
+<!-- Handlebars template -->
+<script id="tune-template" type="text/x-handlebars-template">
+  {{#each tunes}}
+    <h2>
+      <a href="/tunes/{{id}}">
+        {{artist}} - {{title}}
+      </a>
+    </h2>
+    <p>{{comments}}</p>
+  {{/each}}
+</script>
+
+<script>
+  // Get template code...
+  var source = $("#tune-template").html();
+  // ...and compile it. Handlebars.compile() returns a function that
+  // receives data and returns the complete HTML.
+  var template = Handlebars.compile(source);
+
+  // Attach click action to the element with id="go_get_it"
+  $('#go_get_it').on('click', function(ev) {
+
+    // Prevents default action of clicking on the link
+    ev.preventDefault();
+
+    // Get JSON data from /tunes - this will trigger the request.xhr? method
+    // on sinatra.
+    // Note we're using jQuery promises here: the done() function
+    // will be called if everything goes well. If any errors happen, fail() is
+    // called instead. Docs: http://api.jquery.com/jQuery.get
+    $.get('/tunes').
+    done(function(result){
+      var data = JSON.parse(result);
+      var $container = $('#container');
+      // Generate complete HTML using server data...
+      var html = template({tunes: data});
+      // ...and display it inside $container.
+      $container.html(html);
+    }).
+    fail(function(error){
+      console.error(error);
+    });
+  });
+</script>
