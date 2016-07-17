@@ -8,4 +8,14 @@ Slide deck: http://d.pr/f/14HuZ/12zl158E
 
 Documentation about the rails command line, including generators and scaffolding: http://guides.rubyonrails.org/command_line.html
 
-NOTE: For anyone curious, the problem I had on my setup was related to `spring`, which is something that keeps the rails server running on the background. If you run into the same issues (i.e. `rails` commands freezing up), run `pkill spring` on your terminal.
+## Note on Rails versions
+
+Rails 5 just came out, so Rails 4 is still the most common version out there. To create a project using a specific version, use the following command:
+
+```sh
+# Start a new project using Rails 4.2.4
+$ rails _4.2.4_ new my_vintage_rails4_app
+
+# To use the latest version, simply type
+$ rails new my_shiny_rails5_app
+```
