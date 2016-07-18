@@ -4,7 +4,7 @@ Today we talked about Rails and how it relates to the Sinatra work we've been do
 
 We've explored how rails can generate code for us - from migrations to full application scaffolds - and briefly discussed resourceful routing (to be explored in detail on the next lecture).
 
-Slide deck: http://d.pr/f/14HuZ/12zl158E
+As DHH himself says, [Rails is omakase](http://david.heinemeierhansson.com/2012/rails-is-omakase.html). It's an opinionated collection of useful things. You can add and remove components if you like, but the main menu is set!
 
 Documentation about the rails command line, including generators and scaffolding: http://guides.rubyonrails.org/command_line.html
 
@@ -13,7 +13,7 @@ Documentation about the rails command line, including generators and scaffolding
 Rails 5 just came out, so Rails 4 is still the most common version out there. To create a project using a specific version, use the following command:
 
 ```sh
-# Start a new project using Rails 4.2.4
+# Start a new project using Rails 4.2.4 - note the version inside underscores
 $ rails _4.2.4_ new my_vintage_rails4_app
 
 # To use the latest version, simply type
