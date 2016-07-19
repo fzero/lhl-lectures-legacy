@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @topping.topping_type %>
+</p>
+
+<p>
+  <strong>Flavour:</strong>
+  <%= @topping.flavour %>
+</p>
+
+<p>
+  <strong>Ice cream:</strong>
+  <%= @topping.ice_cream %>
+</p>
+
+<%= link_to 'Edit', edit_topping_path(@topping) %> |
+<%= link_to 'Back', toppings_path %>

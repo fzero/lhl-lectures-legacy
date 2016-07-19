@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Flavour:</strong>
+  <%= @ice_cream.flavour %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @ice_cream.size %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @ice_cream.ice_cream_type %>
+</p>
+
+<p>
+  <strong>Cone:</strong>
+  <%= @ice_cream.cone %>
+</p>
+
+<%= link_to 'Edit', edit_ice_cream_path(@ice_cream) %> |
+<%= link_to 'Back', ice_creams_path %>

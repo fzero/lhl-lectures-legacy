@@ -1,0 +1,37 @@
+<%= form_for(ice_cream) do |f| %>
+  <% if ice_cream.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ice_cream.errors.count, "error") %> prohibited this ice_cream from being saved:</h2>
+
+      <ul>
+      <% ice_cream.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :flavour %>
+    <%= f.text_field :flavour %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ice_cream_type %>
+    <%= f.text_field :ice_cream_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cone %>
+    <%= f.text_field :cone %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

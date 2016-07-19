@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  flavour: MyString
+  size: MyString
+  type: 
+  cone: MyString
+
+two:
+  flavour: MyString
+  size: MyString
+  type: 
+  cone: MyString

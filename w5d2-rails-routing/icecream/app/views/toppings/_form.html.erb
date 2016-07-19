@@ -1,0 +1,32 @@
+<%= form_for(topping) do |f| %>
+  <% if topping.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(topping.errors.count, "error") %> prohibited this topping from being saved:</h2>
+
+      <ul>
+      <% topping.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :topping_type %>
+    <%= f.text_field :topping_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :flavour %>
+    <%= f.text_field :flavour %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ice_cream_id %>
+    <%= f.text_field :ice_cream_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
