@@ -19,19 +19,11 @@ class Country
   # I'm using a hash to initialize objects, so I don't need to remember the
   # order of parameters. This pattern is also used by ActiveRecord.
   def initialize(params={})
-    data = {
-      id: nil,
-      name: nil,
-      population: nil,
-      capital: nil,
-      area: nil
-    }.merge(params)
-
-    @id = data[:id]
-    @name = data[:name]
-    @population = data[:population]
-    @capital = data[:capital]
-    @area = data[:area]
+    @id = params[:id]
+    @name = params[:name]
+    @population = params[:population]
+    @capital = params[:capital]
+    @area = params[:area]
   end
 
   # A quick way to find out if a record is saved is by checking if it has an id
