@@ -1,0 +1,20 @@
+{
+  "name": "minimal_express_example",
+  "version": "1.0.0",
+  "description": "Minimal Express.js example",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Add tests someday\"",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "W7D1 Breakout",
+    "LighthouseLabs"
+  ],
+  "author": "Fabio Neves",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
+}
