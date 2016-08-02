@@ -13,6 +13,10 @@ class Country
   # This is a Model class.
   # A Model represent the table, while each instance of a model represents a row.
 
+  # Let's create a constant to hold the table name. This way we can quickly
+  # update all queries if this changes.
+  TABLE = 'countries'
+
   attr_accessor :name, :population, :capital, :area  # Accessors for all columns
   attr_reader :id  # `id` is defined by the database, so it should be read-only
 
@@ -26,59 +30,84 @@ class Country
     @area = params[:area]
   end
 
-  # A quick way to find out if a record is saved is by checking if it has an id
-  def saved?
-    !!@id  # Dirty trick to cast to Boolean
-  end
-
   def save
-    # Right now we're only doing INSERTs. The logic will have to change a little
-    # to figure out if you need to do an INSERT or an UPDATE.
-    # HINT: Right now we're bailing if the record is already saved.
-    #       Updating = changing data that's already saved. ;-)
-    return false if saved?
-    result = DB.exec_params(
-      "INSERT INTO countries (name, population, capital, area) " +
-      "VALUES ($1, $2, $3, $4) RETURNING id",
-      [@name, @population, @capital, @area]
-    )
-    # The result comes as a hash inside and array: [{'id' => '4'}]
-    # We need an integer, so we must deal with it.
-    @id = result.first['id'].to_i
+    # TODO: check for errors
+    if saved?
+      # If we have an id, it means the object is already saved to the
+      # database, so we need to do an UPDATE
+      DB.exec_params(
+        "UPDATE #{TABLE} SET name=$1, population=$2, capital=$3, area=$4 " +
+        "WHERE id=$5;",
+        [@name, @population, @capital, @area, @id]
+      )
+    else
+      # There are two ways to create new records:
+      # - Create a new instance, add data and then save it or...
+      # - ...insert data in the table right away.
+      # The code below deals with option one, e.g.:
+      # c = Country.new(name: 'Brazil')
+      # c.save
+      result = DB.exec_params(
+        "INSERT into #{TABLE} (name, population, capital, area) VALUES " +
+        "($1, $2, $3, $4) RETURNING id;",
+        [@name, @population, @capital, @area]
+      )
+      @id = result[0]['id'].to_i
+    end
+    # If everything goes well, we'll return the updated Country instance.
+    self
   end
 
   def delete
-    return false unless saved?
-    DB.exec_params("DELETE FROM countries WHERE id=$1;", [@id])
+    return unless saved? # We can only proceed if we have an id
+    DB.exec("DELETE from #{TABLE} where id=#{@id};")
+    self
   end
 
+  def saved?
+    !@id.nil?
+  end
 
   # Methods to find, create and deal with collections of data should be
   # class methods.
   class << self
 
     def all
-      DB.exec('SELECT * FROM countries;').map do |row|
-        instance_from_row(row)
-      end
+      # PG will returns something that looks like an array of hashes, but our class
+      # should always return an array of Country objects. The line below will
+      # use the instance_from_row method to convert each result before
+      # returning it.
+      DB.exec("SELECT * from #{TABLE};").map {|country| instance_from_row(country)}
+      # it's the same as:
+      # output = []
+      # DB.exec("SELECT * from countries;").each |country|
+      #   output << instance_from_row(country)
+      # end
+      # output
     end
 
     def find(id)
-      result = DB.exec_params('SELECT * FROM countries WHERE id=$1;', [id]).map do |row|
-        instance_from_row(row)
-      end
-      result.first
+      result = DB.exec_params("SELECT * from #{TABLE} where id=$1;", [id])
+      return nil if result.values.empty?
+      instance_from_row(result.first)
     end
 
     def find_by_name(name)
-      DB.exec_params('SELECT * FROM countries WHERE name ILIKE $1;', ["%#{name}%"]).map do |row|
-        instance_from_row(row)
-      end
+      result = DB.exec_params("SELECT * from #{TABLE} where name ILIKE $1;", ["%#{name}%"])
+      return [] if result.values.empty?
+      result.map {|country| instance_from_row(country)}
     end
 
+    # This is the other way of creating objects in the database.
+    # It's a class method that takes a hash containing country data,
+    # inserts it on the table and returns a new country instance.
     def create(data)
-      new_country = Country.new(data)
-      return new_country if new_country.save
+      result = DB.exec_params(
+        "INSERT into #{TABLE} (name, population, capital, area) VALUES " +
+        "($1, $2, $3, $4) RETURNING id;",
+        [data[:name], data[:population], data[:capital], data[:area]]
+      )
+      Country.new(data.merge(id: result[0]['id'].to_i))
     end
 
 
