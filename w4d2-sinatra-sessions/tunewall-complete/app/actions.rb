@@ -42,7 +42,7 @@ end
 post '/validate' do
   email = params[:email]
   password = params[:password]
-  user = User.find_by(email: email, password: password)
+  user = User.find_by(email: email).try(:authenticate, password)
   if user
     session[:user_id] = user.id
     redirect '/tunes'
