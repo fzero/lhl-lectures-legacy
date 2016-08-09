@@ -1,6 +1,6 @@
-<h1>Tunewall</h1>
+<h1><%= @user.first_name %>'s tunes</h1>
 
-<% @tunes.each do |tune| %>
+<% @user.tunes.each do |tune| %>
   <h2>
     <a href="<%= tune.url %>">
       <%= tune.artist %> - <%= tune.title %>
