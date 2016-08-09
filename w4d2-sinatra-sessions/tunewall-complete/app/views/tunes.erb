@@ -2,7 +2,7 @@
 
 <% @user.tunes.each do |tune| %>
   <h2>
-    <a href="<%= tune.url %>">
+    <a href="/tunes/<%= tune.id %>">
       <%= tune.artist %> - <%= tune.title %>
     </a>
   </h2>

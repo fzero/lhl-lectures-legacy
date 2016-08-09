@@ -65,6 +65,13 @@ end
 
 # Tunes for the current user
 get '/tunes' do
-  check_user
+  # get user from session
+  check_login
   erb :tunes
+end
+
+get '/tunes/:id' do
+  check_login
+  @tune = @user.tunes.find_by(id: params[:id])
+  erb :tune
 end
