@@ -45,6 +45,27 @@ Then add a hidden field named `_method` to your form and put the desired HTTP me
 <input name="_method" type="hidden" value="delete" />
 ```
 
+## Partials
+
+ERB allows you to reuse bits of `erb` code in different pages so you don't need repeat yourself (keep it DRY!). In the code discussed in class, they're being used for forms (`/tunes/new` and `/tunes/:id/edit`) and also on `index.erb` and `show.erb`. Its simplest form is:
+
+```erb
+<%= erb :'_partial_name' %>
+```
+
+This will render `_partial_name.erb` at that point in the page (partial file names are usually prefixed with an underscore to differentiate from full templates). You can also pass variables to partials using the `locals` parameter, which makes them even more useful:
+
+```erb
+<!-- In the erb file where you include the partial: -->
+<%= erb :'_quote', locals: {name: 'John Snow'} %>
+
+
+<!-- Inside _quote.erb: -->
+<h1>You know nothing, <%= name %>.</h1>
+```
+
+See the [code discussed in class](https://www.dropbox.com/s/cilbnrs4fed9vpx/w4d4-rest-sinatra.tgz?dl=1) for more examples.
+
 ## Cookie persistence
 
 There were questions in class about creating session variables that persist for a given time instead of being zapped every time the browser is closed. The Sinatra docs deal with _cookies_ with specific durations, but I couldn't find anything similar for sessions.
