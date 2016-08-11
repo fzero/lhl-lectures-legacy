@@ -1,6 +1,8 @@
 <h1>Edit tune <%= @tune.artist %> - <%= @tune.title %></h1>
 
 <form action="/tunes/<%= @tune.id %>/update" method="POST" id="tune_form">
+  <!-- Overriding form action - see lecture notes -->
+  <input name="_method" type="hidden" value="put" />
   <%= erb :'tunes/_form', locals: {tune: @tune} %>
 </form>
 

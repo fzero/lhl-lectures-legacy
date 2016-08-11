@@ -1,11 +1,6 @@
 <h1>Tune: <%= @tune.artist %> - <%= @tune.title %></h1>
 
-<p>
-  <a href="<%= @tune.url %>">Click here to listen!</a>
-</p>
-
-<h2>Comments</h2>
-<p><%= @tune.comments %></p>
+<%= erb :'/tunes/_single_tune', locals: {tune: @tune} %>
 
 <h2>Actions</h2>
 

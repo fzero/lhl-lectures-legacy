@@ -6,6 +6,15 @@ h1 {
   border-bottom: 1px solid;
 }
 
+h2 a {
+  text-decoration: none;
+}
+
+h2 small {
+  font-size: 60%;
+  margin-left: 0.3em;
+}
+
 .cookies_table {
   width: 50%;
   margin-left: 25%;

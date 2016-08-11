@@ -1,42 +1,23 @@
-helpers do
+# Form action override to provide PUT/PATCH/DELETE
+# See lecture notes
+use Rack::MethodOverride
 
-  # Get logged-in user or redirects to login page
-  # Uses session[:login_error] to store an error message when needed
-  def check_user
-    @user = User.find_by(id: session[:user_id])
-    if @user
-      session.delete(:login_error)
-    else
-      session[:login_error] = "You must be logged in."
-      redirect '/login'
-    end
+# Get logged-in user or redirects to login page
+# Uses session[:login_error] to store an error message when needed
+def check_user
+  @user = User.find_by(id: session[:user_id])
+  if @user
+    session.delete(:login_error)
+  else
+    session[:login_error] = "You must be logged in."
+    redirect '/login'
   end
-
-  # Gets tune from params[:id] or redirects to tune list
-  def get_tune
-    @tune = Tune.find_by(id: params[:id])
-    redirect '/tunes' unless @tune
-  end
-
 end
 
-
-before do
-  # Stuff that happens before ALL actions go here.
-  # If you want to be specific, make a block with a route
-  # matcher. This is pretty good place control sessions.
-  #
-  # Example:
-  #
-  # before '/protected/*'
-  #   check_login
-  # end
-end
-
-
-after do
-  # Same idea as `before`, but happening AFTER actions.
-  # Potentially less useful, but hey, it's there.
+# Gets tune from params[:id] or redirects to tune list
+def get_tune
+  @tune = Tune.find_by(id: params[:id])
+  redirect '/tunes' unless @tune
 end
 
 
@@ -185,4 +166,3 @@ get '/tunes/:id/delete' do
   @tune.destroy
   redirect '/tunes'
 end
-
