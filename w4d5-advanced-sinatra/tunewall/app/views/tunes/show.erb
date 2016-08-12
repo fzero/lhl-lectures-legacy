@@ -1,0 +1,10 @@
+<h1>Tune: <%= @tune.artist %> - <%= @tune.title %></h1>
+
+<%= erb :'/tunes/_single_tune', locals: {tune: @tune} %>
+
+<h2>Actions</h2>
+
+<p>
+  <a href="/tunes/<%= @tune.id %>/edit">Edit</a>
+  <a href="/tunes/<%= @tune.id %>/delete">Delete</a>
+</p>

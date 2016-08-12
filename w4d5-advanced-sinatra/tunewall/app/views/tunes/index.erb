@@ -1,0 +1,5 @@
+<h1><%= @user.first_name %>'s tunes</h1>
+
+<% @user.tunes.each do |tune| %>
+  <%= erb :'/tunes/_single_tune', locals: {tune: tune} %>
+<% end %>

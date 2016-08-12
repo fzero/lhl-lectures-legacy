@@ -1,0 +1,15 @@
+<h1>Cookies!</h1>
+
+<table class="cookies_table">
+  <tr>
+    <th>Cookie name</th>
+    <th>Contents</th>
+  </tr>
+
+  <% cookies.each do |name, contents| %>
+    <tr>
+      <td><%= name %></td>
+      <td><%= contents %></td>
+    </tr>
+  <% end %>
+</table>
