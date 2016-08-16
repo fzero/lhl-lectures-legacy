@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Routing</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% if flash.present? %>
+      <% flash.each do |type, message| %>
+        <p class="<%= type %>"><%= message %></p>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+    <%#= console %>
+  </body>
+</html>
