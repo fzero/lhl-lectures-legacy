@@ -1,10 +1,11 @@
 # Javascript in the browser!
 
-* window, navigator, document
-* BOM
-* DOM
-* Nodes
-* document API
+* window, navigator
+  * BOM
+* document
+  * DOM
+  * Nodes
+  * document API
 * Events
   * addEventListener
   * DOMContentLoaded

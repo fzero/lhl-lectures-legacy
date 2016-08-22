@@ -4,9 +4,25 @@
     <meta charset="utf-8">
     <title>Javascript in the browser!</title>
     <link rel="stylesheet" href="style.css">
-    <script src="javascript.js"></script>
   </head>
   <body>
+
     <h1>Hello there!</h1>
+
+    <div class="add_some_space_bro" id="outer">
+      <div class="add_some_space_bro" id="inner">
+        <button id="thebutton">Click me!</button>
+      </div>
+    </div>
+
+    <!--
+      One way to make sure we have all DOM elements ready when the page is
+      loaded is to simply add all JS code at the bottom.
+      The other way is to hook into the `DOMContentLoaded` event.
+      If you're using jQuery you can also use the $(function(){})
+      shortcut.
+    -->
+    <script src="javascript.js"></script>
+    <script src="more.js"></script>
   </body>
 </html>
