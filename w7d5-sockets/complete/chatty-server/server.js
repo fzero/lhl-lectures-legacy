@@ -14,7 +14,7 @@ const app = express()
   () => console.log(`Listening on ${PORT}`)
 );
 
-// Create the WebSockets server
+// Create the WebSockets server and attach it to express
 const wss = new SocketServer({server: app});
 
 // Set up a callback that will run when a client connects to the server
@@ -24,23 +24,28 @@ wss.on('connection', (ws) => {
   console.log('Client connected');
 
   // Echo back messages (testing purposes)
-  ws.on('message', receiveMessage);
+  ws.on('message', handleMessage);
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));
 });
 
-// Message handling methods
-function receiveMessage(data) {
-  let message = JSON.parse(data);
-  message.id = uuid.v4();
-  wss.broadcast(message);
-  console.log(`User ${message.username || 'Anonymous'} said ${message.content}`);
-}
-
 // Broadcast - Goes through each client and sends message data
 wss.broadcast = function(data) {
-  wss.clients.forEach(function each(client) {
-    client.send(JSON.stringify(data));
+  wss.clients.forEach(function(client) {
+    client.send(data);
   });
 };
+
+
+function handleMessage(message_data) {
+  // Receive message, parse, then add unique id so React behaves correctly
+  console.log(`Received: ${message_data}`)
+  var message = JSON.parse(message_data);
+  message.id = uuid.v4();
+
+  // Now we stringify the message and send it back to all clients via broadcast
+  var to_send = JSON.stringify(message);
+  wss.broadcast(to_send);
+  console.log(`Sent: ${to_send}`);
+}
