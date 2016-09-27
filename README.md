@@ -1,5 +1,6 @@
-# Lighthouse Labs lectures
+# Lighthouse Labs lectures - old curriculum
 
 Simple stuff: one folder for each lecture.
 
-TODO: Maybe make this public?
+These lectures are for the old, mostly ruby-based curriculum.
+
